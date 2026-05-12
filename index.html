@@ -3,354 +3,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>介護士ブラック施設診断</title>
-  <meta name="description" content="介護士向けのブラック施設診断。人間関係、夜勤、人手不足、給与、シフト、記録業務などから職場リスクをチェックできます。" />
+  <title>介護士職場ストレス診断</title>
+  <meta name="description" content="介護士向けの職場ストレス診断。人間関係、夜勤、人手不足、給与、シフト、記録業務などから職場ストレスをチェックできます。" />
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "YuGothic", "Meiryo", sans-serif;
-      background: linear-gradient(180deg, #f4fbff 0%, #fff7f2 100%);
-      color: #1f2937;
-      line-height: 1.7;
-      min-height: 100vh;
-    }
-
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 20px 16px 48px;
-    }
-
-    .hero {
-      background: #ffffff;
-      border-radius: 28px;
-      padding: 28px 22px;
-      box-shadow: 0 16px 40px rgba(30, 64, 175, 0.12);
-      text-align: center;
-      margin-top: 18px;
-      border: 1px solid rgba(147, 197, 253, 0.55);
-    }
-
-    .badge {
-      display: inline-block;
-      background: #e0f2fe;
-      color: #0369a1;
-      font-weight: 800;
-      font-size: 13px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      margin-bottom: 14px;
-    }
-
-    h1 {
-      font-size: 30px;
-      line-height: 1.25;
-      color: #0f172a;
-      margin-bottom: 14px;
-      letter-spacing: -0.04em;
-    }
-
-    .lead {
-      font-size: 15px;
-      color: #475569;
-      margin-bottom: 20px;
-    }
-
-    .warning {
-      background: #fff7ed;
-      border: 1px solid #fed7aa;
-      border-radius: 18px;
-      padding: 14px;
-      text-align: left;
-      color: #9a3412;
-      font-size: 14px;
-      margin-top: 18px;
-    }
-
-    .start-button, .answer-button, .restart-button, .cta-button {
-      width: 100%;
-      border: none;
-      border-radius: 18px;
-      padding: 16px 18px;
-      font-size: 16px;
-      font-weight: 800;
-      cursor: pointer;
-      transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
-    }
-
-    .start-button, .cta-button {
-      background: linear-gradient(135deg, #0ea5e9, #2563eb);
-      color: #ffffff;
-      box-shadow: 0 12px 24px rgba(37, 99, 235, 0.25);
-      margin-top: 18px;
-    }
-
-    .start-button:active, .answer-button:active, .restart-button:active, .cta-button:active {
-      transform: scale(0.98);
-      opacity: 0.9;
-    }
-
-    .section {
-      background: #ffffff;
-      border-radius: 24px;
-      padding: 22px 18px;
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
-      margin-top: 18px;
-      border: 1px solid rgba(226, 232, 240, 0.9);
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .progress-wrap {
-      margin-bottom: 18px;
-    }
-
-    .progress-text {
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
-      font-weight: 700;
-      color: #64748b;
-      margin-bottom: 8px;
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 10px;
-      background: #e2e8f0;
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #38bdf8, #2563eb);
-      border-radius: 999px;
-      transition: width 0.2s ease;
-    }
-
-    .question-title {
-      font-size: 21px;
-      line-height: 1.45;
-      color: #0f172a;
-      margin-bottom: 14px;
-      font-weight: 900;
-    }
-
-    .question-sub {
-      font-size: 14px;
-      color: #64748b;
-      margin-bottom: 18px;
-    }
-
-    .answers {
-      display: grid;
-      gap: 12px;
-    }
-
-    .answer-button {
-      background: #f8fafc;
-      color: #0f172a;
-      text-align: left;
-      border: 1px solid #e2e8f0;
-      box-shadow: none;
-    }
-
-    .answer-button:hover {
-      background: #eff6ff;
-      border-color: #93c5fd;
-    }
-
-    .result-header {
-      text-align: center;
-      margin-bottom: 18px;
-    }
-
-    .score-circle {
-      width: 148px;
-      height: 148px;
-      border-radius: 50%;
-      margin: 0 auto 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      color: #ffffff;
-      box-shadow: 0 18px 32px rgba(15, 23, 42, 0.18);
-    }
-
-    .score-number {
-      font-size: 42px;
-      font-weight: 950;
-      line-height: 1;
-    }
-
-    .score-label {
-      font-size: 13px;
-      font-weight: 800;
-      opacity: 0.9;
-    }
-
-    .result-title {
-      font-size: 24px;
-      line-height: 1.35;
-      font-weight: 950;
-      color: #0f172a;
-      margin-bottom: 8px;
-    }
-
-    .result-message {
-      color: #475569;
-      font-size: 15px;
-      text-align: left;
-      background: #f8fafc;
-      border-radius: 18px;
-      padding: 16px;
-      margin-top: 14px;
-    }
-
-    .risk-list {
-      margin-top: 16px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .risk-item {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 16px;
-      padding: 13px 14px;
-      font-size: 14px;
-    }
-
-    .risk-item strong {
-      display: block;
-      color: #0f172a;
-      margin-bottom: 4px;
-    }
-
-    .cta-box {
-      margin-top: 18px;
-      background: linear-gradient(180deg, #eff6ff, #ffffff);
-      border: 1px solid #bfdbfe;
-      border-radius: 22px;
-      padding: 18px;
-      text-align: center;
-    }
-
-    .cta-title {
-      font-size: 19px;
-      font-weight: 950;
-      color: #0f172a;
-      margin-bottom: 8px;
-    }
-
-    .cta-text {
-      color: #475569;
-      font-size: 14px;
-      text-align: left;
-    }
-
-    .cta-button {
-      display: block;
-      text-decoration: none;
-    }
-
-    .sub-cta {
-      display: block;
-      text-align: center;
-      color: #ffffff;
-      font-weight: 800;
-      margin-top: 12px;
-      text-decoration: none;
-      font-size: 15px;
-      background: linear-gradient(135deg, #f97316, #ea580c);
-      padding: 15px 18px;
-      border-radius: 16px;
-      box-shadow: 0 10px 20px rgba(249, 115, 22, 0.25);
-    }
-
-    .sub-cta:hover {
-      opacity: 0.95;
-    }
-
-    .restart-button {
-      background: #f1f5f9;
-      color: #334155;
-      margin-top: 14px;
-    }
-
-    .footer {
-      text-align: center;
-      font-size: 12px;
-      color: #94a3b8;
-      margin-top: 24px;
-    }
-
-    .share-box {
-      margin-top: 16px;
-      padding: 14px;
-      background: #fff7ed;
-      border: 1px solid #fed7aa;
-      border-radius: 18px;
-      color: #9a3412;
-      font-size: 14px;
-      text-align: left;
-    }
-
-    .small-note {
-      margin-top: 10px;
-      font-size: 12px;
-      color: #64748b;
-      text-align: left;
-    }
-
-    @media (max-width: 420px) {
-      h1 {
-        font-size: 27px;
-      }
-      .container {
-        padding: 14px 12px 36px;
-      }
-      .hero, .section {
-        border-radius: 22px;
-      }
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "YuGothic", "Meiryo", sans-serif; background: linear-gradient(180deg, #f4fbff 0%, #fff7f2 100%); color: #1f2937; line-height: 1.7; min-height: 100vh; }
+    .container { max-width: 720px; margin: 0 auto; padding: 20px 16px 48px; }
+    .hero { background: #ffffff; border-radius: 28px; padding: 28px 22px; box-shadow: 0 16px 40px rgba(30, 64, 175, 0.12); text-align: center; margin-top: 18px; border: 1px solid rgba(147, 197, 253, 0.55); }
+    .badge { display: inline-block; background: #e0f2fe; color: #0369a1; font-weight: 800; font-size: 13px; padding: 6px 12px; border-radius: 999px; margin-bottom: 14px; }
+    h1 { font-size: 30px; line-height: 1.25; color: #0f172a; margin-bottom: 14px; letter-spacing: -0.04em; }
+    .lead { font-size: 15px; color: #475569; margin-bottom: 20px; }
+    .warning { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 18px; padding: 14px; text-align: left; color: #9a3412; font-size: 14px; margin-top: 18px; }
+    .start-button, .answer-button, .restart-button, .cta-button { width: 100%; border: none; border-radius: 18px; padding: 16px 18px; font-size: 16px; font-weight: 800; cursor: pointer; transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease; }
+    .start-button, .cta-button { background: linear-gradient(135deg, #0ea5e9, #2563eb); color: #ffffff; box-shadow: 0 12px 24px rgba(37, 99, 235, 0.25); margin-top: 18px; }
+    .start-button:active, .answer-button:active, .restart-button:active, .cta-button:active { transform: scale(0.98); opacity: 0.9; }
+    .section { background: #ffffff; border-radius: 24px; padding: 22px 18px; box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08); margin-top: 18px; border: 1px solid rgba(226, 232, 240, 0.9); }
+    .hidden { display: none; }
+    .progress-wrap { margin-bottom: 18px; }
+    .progress-text { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; color: #64748b; margin-bottom: 8px; }
+    .progress-bar { width: 100%; height: 10px; background: #e2e8f0; border-radius: 999px; overflow: hidden; }
+    .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #38bdf8, #2563eb); border-radius: 999px; transition: width 0.2s ease; }
+    .question-title { font-size: 21px; line-height: 1.45; color: #0f172a; margin-bottom: 14px; font-weight: 900; }
+    .question-sub { font-size: 14px; color: #64748b; margin-bottom: 18px; }
+    .answers { display: grid; gap: 12px; }
+    .answer-button { background: #f8fafc; color: #0f172a; text-align: left; border: 1px solid #e2e8f0; box-shadow: none; }
+    .answer-button:hover { background: #eff6ff; border-color: #93c5fd; }
+    .result-header { text-align: center; margin-bottom: 18px; }
+    .score-circle { width: 148px; height: 148px; border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; flex-direction: column; color: #ffffff; box-shadow: 0 18px 32px rgba(15, 23, 42, 0.18); }
+    .score-number { font-size: 42px; font-weight: 950; line-height: 1; }
+    .score-label { font-size: 13px; font-weight: 800; opacity: 0.9; }
+    .result-title { font-size: 24px; line-height: 1.35; font-weight: 950; color: #0f172a; margin-bottom: 8px; }
+    .result-message { color: #475569; font-size: 15px; text-align: left; background: #f8fafc; border-radius: 18px; padding: 16px; margin-top: 14px; }
+    .risk-list { margin-top: 16px; display: grid; gap: 10px; }
+    .risk-item { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 13px 14px; font-size: 14px; }
+    .risk-item strong { display: block; color: #0f172a; margin-bottom: 4px; }
+    .cta-box { margin-top: 18px; background: linear-gradient(180deg, #eff6ff, #ffffff); border: 1px solid #bfdbfe; border-radius: 22px; padding: 18px; text-align: center; }
+    .cta-title { font-size: 19px; font-weight: 950; color: #0f172a; margin-bottom: 8px; }
+    .cta-text { color: #475569; font-size: 14px; text-align: left; }
+    .cta-button { display: block; text-decoration: none; }
+    .sub-cta { display: block; text-align: center; color: #ffffff; font-weight: 800; margin-top: 12px; text-decoration: none; font-size: 15px; background: linear-gradient(135deg, #f97316, #ea580c); padding: 15px 18px; border-radius: 16px; box-shadow: 0 10px 20px rgba(249, 115, 22, 0.25); }
+    .restart-button { background: #f1f5f9; color: #334155; margin-top: 14px; }
+    .footer { text-align: center; font-size: 12px; color: #94a3b8; margin-top: 24px; }
+    .share-box { margin-top: 16px; padding: 14px; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 18px; color: #9a3412; font-size: 14px; text-align: left; }
+    .small-note { margin-top: 10px; font-size: 12px; color: #64748b; text-align: left; }
+    @media (max-width: 420px) { h1 { font-size: 27px; } .container { padding: 14px 12px 36px; } .hero, .section { border-radius: 22px; } }
   </style>
 </head>
 <body>
   <main class="container">
     <section id="top" class="hero">
       <div class="badge">介護士向け｜30秒診断</div>
-      <h1>あなたの職場、<br />ブラック施設化してない？</h1>
-      <p class="lead">
-        夜勤・人間関係・人手不足・給与・シフト・記録業務などから、今の職場の危険度をチェックします。
-      </p>
+      <h1>介護士職場ストレス診断</h1>
+      <p class="lead">夜勤・人間関係・人手不足・給与・シフト・記録業務などから、今の職場のストレス度をチェックします。</p>
       <button class="start-button" onclick="startDiagnosis()">診断をはじめる</button>
-      <div class="warning">
-        ※この診断は医療・法律・労務判断ではありません。転職や退職の最終判断は、事実確認と相談を前提にしてください。
-      </div>
+      <div class="warning">※この診断は医療・法律・労務判断ではありません。転職や退職の最終判断は、事実確認と相談を前提にしてください。</div>
     </section>
 
     <section id="quiz" class="section hidden">
       <div class="progress-wrap">
-        <div class="progress-text">
-          <span id="progressCount">1 / 10</span>
-          <span id="progressPercent">10%</span>
-        </div>
-        <div class="progress-bar">
-          <div id="progressFill" class="progress-fill"></div>
-        </div>
+        <div class="progress-text"><span id="progressCount">1 / 10</span><span id="progressPercent">10%</span></div>
+        <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
       </div>
-
       <h2 id="questionTitle" class="question-title"></h2>
       <p id="questionSub" class="question-sub"></p>
       <div id="answers" class="answers"></div>
@@ -358,278 +71,44 @@
 
     <section id="result" class="section hidden">
       <div class="result-header">
-        <div id="scoreCircle" class="score-circle">
-          <div id="scoreNumber" class="score-number">0</div>
-          <div class="score-label">危険度</div>
-        </div>
+        <div id="scoreCircle" class="score-circle"><div id="scoreNumber" class="score-number">0</div><div class="score-label">ストレス度</div></div>
         <h2 id="resultTitle" class="result-title"></h2>
       </div>
       <div id="resultMessage" class="result-message"></div>
-
       <div class="risk-list" id="riskList"></div>
-
-      <div class="share-box">
-        <strong>保存推奨：</strong><br />
-        今の職場で「しんどい」が続いている人は、結果をスクショしてあとで見返してください。
-      </div>
-
+      <div class="share-box"><strong>保存推奨：</strong><br />今の職場で「しんどい」が続いている人は、結果をスクショしてあとで見返してください。</div>
       <div class="cta-box">
         <div class="cta-title">ひとりで抱え込まないでください</div>
-        <p class="cta-text">
-          ブラック度が高い場合、あなたの努力不足ではなく、職場構造の問題かもしれません。まずは情報収集だけでもOKです。
-        </p>
-        <a id="lineButton" class="cta-button" href="https://lin.ee/8HmXwzg" target="_blank" rel="noopener">LINEで無料相談する</a>
-        <a id="noteButton" class="sub-cta" href="https://note.com/kaigo_tenshoku" target="_blank" rel="noopener">ブラック施設を避ける方法を見る</a>
-        <p class="small-note">
-          ※LINE・noteのURLは、あなたのURLに差し替えてください。
-        </p>
+        <p class="cta-text">職場ストレスが高い場合、あなたの努力不足ではなく、職場構造の問題かもしれません。まずは情報収集だけでもOKです。</p>
+        <a class="cta-button" href="https://lin.ee/8HmXwzg" target="_blank" rel="noopener">LINEで無料相談する</a>
+        <a class="sub-cta" href="https://note.com/kaigo_tenshoku" target="_blank" rel="noopener">ブラック施設を避ける方法を見る</a>
+        <p class="small-note">※LINE・noteのURLは設定済みです。</p>
       </div>
-
       <button class="restart-button" onclick="restartDiagnosis()">もう一度診断する</button>
     </section>
-
-    <div class="footer">
-      © 介護士ブラック施設診断｜Powered by simple HTML
-    </div>
+    <div class="footer">© 介護士職場ストレス診断</div>
   </main>
 
   <script>
     const questions = [
-      {
-        title: "人手不足が常態化していますか？",
-        sub: "急な欠勤や欠員が出るたびに、現場の誰かが無理をして埋めている状態か確認してください。",
-        answers: [
-          { text: "ほぼ毎日、人手不足を感じる", score: 10, tag: "人手不足" },
-          { text: "週に何度か感じる", score: 7, tag: "人手不足" },
-          { text: "たまに感じる", score: 4, tag: "人手不足" },
-          { text: "ほとんど感じない", score: 0, tag: "人手不足" }
-        ]
-      },
-      {
-        title: "夜勤の負担は限界に近いですか？",
-        sub: "ワンオペ、仮眠なし、急変対応、明け残業などを含めて考えてください。",
-        answers: [
-          { text: "かなり限界。体調にも出ている", score: 10, tag: "夜勤負担" },
-          { text: "しんどいが、何とか耐えている", score: 7, tag: "夜勤負担" },
-          { text: "普通程度の負担", score: 3, tag: "夜勤負担" },
-          { text: "夜勤負担は少ない", score: 0, tag: "夜勤負担" }
-        ]
-      },
-      {
-        title: "人間関係に強いストレスがありますか？",
-        sub: "陰口、派閥、無視、責任押し付け、強い口調などがあるかを見てください。",
-        answers: [
-          { text: "出勤前から憂うつになるレベル", score: 10, tag: "人間関係" },
-          { text: "特定の人がかなりストレス", score: 7, tag: "人間関係" },
-          { text: "多少あるが許容範囲", score: 3, tag: "人間関係" },
-          { text: "人間関係は良い", score: 0, tag: "人間関係" }
-        ]
-      },
-      {
-        title: "サービス残業や持ち帰り業務はありますか？",
-        sub: "記録、委員会、研修準備、申し送り、会議なども含めてください。",
-        answers: [
-          { text: "当たり前のようにある", score: 10, tag: "サービス残業" },
-          { text: "月に何度もある", score: 7, tag: "サービス残業" },
-          { text: "たまにある", score: 4, tag: "サービス残業" },
-          { text: "ほとんどない", score: 0, tag: "サービス残業" }
-        ]
-      },
-      {
-        title: "給与と業務量は見合っていますか？",
-        sub: "夜勤、入浴、看取り、急変対応、記録量、責任の重さと比べて考えてください。",
-        answers: [
-          { text: "まったく見合っていない", score: 10, tag: "給与不満" },
-          { text: "かなり不満がある", score: 7, tag: "給与不満" },
-          { text: "少し不満がある", score: 4, tag: "給与不満" },
-          { text: "おおむね納得している", score: 0, tag: "給与不満" }
-        ]
-      },
-      {
-        title: "休みや希望シフトは通りますか？",
-        sub: "有休、連休、子どもの予定、通院、家庭事情への配慮を含めてください。",
-        answers: [
-          { text: "ほぼ通らない。言いづらい", score: 10, tag: "シフト不満" },
-          { text: "かなり通りにくい", score: 7, tag: "シフト不満" },
-          { text: "たまに通らない", score: 3, tag: "シフト不満" },
-          { text: "比較的通る", score: 0, tag: "シフト不満" }
-        ]
-      },
-      {
-        title: "事故や急変時の責任が現場に偏っていますか？",
-        sub: "管理者や看護師、施設側のフォロー体制があるかを見てください。",
-        answers: [
-          { text: "現場任せでかなり怖い", score: 10, tag: "責任過多" },
-          { text: "フォローは弱い", score: 7, tag: "責任過多" },
-          { text: "最低限のフォローはある", score: 3, tag: "責任過多" },
-          { text: "体制は整っている", score: 0, tag: "責任過多" }
-        ]
-      },
-      {
-        title: "教育や引き継ぎは十分ですか？",
-        sub: "新人放置、マニュアルなし、聞きにくい空気、見て覚えろ文化があるかを確認してください。",
-        answers: [
-          { text: "ほぼ放置。かなり危険", score: 10, tag: "教育不足" },
-          { text: "不十分で不安が多い", score: 7, tag: "教育不足" },
-          { text: "最低限はある", score: 3, tag: "教育不足" },
-          { text: "かなり丁寧", score: 0, tag: "教育不足" }
-        ]
-      },
-      {
-        title: "体やメンタルに不調が出ていますか？",
-        sub: "眠れない、食欲がない、涙が出る、腰痛、頭痛、出勤前の動悸などを含めてください。",
-        answers: [
-          { text: "明確に出ている。危ないと思う", score: 12, tag: "心身不調" },
-          { text: "少しずつ出ている", score: 8, tag: "心身不調" },
-          { text: "疲れはあるが回復できる", score: 3, tag: "心身不調" },
-          { text: "特に問題ない", score: 0, tag: "心身不調" }
-        ]
-      },
-      {
-        title: "この職場で1年後も働くイメージがありますか？",
-        sub: "理屈ではなく、直感で答えてください。",
-        answers: [
-          { text: "正直、無理だと思う", score: 12, tag: "継続困難" },
-          { text: "かなり迷っている", score: 8, tag: "継続困難" },
-          { text: "条件次第では続けられる", score: 4, tag: "継続困難" },
-          { text: "続けるイメージがある", score: 0, tag: "継続困難" }
-        ]
-      }
+      { title: "人手不足が常態化していますか？", sub: "急な欠勤や欠員が出るたびに、現場の誰かが無理をして埋めている状態か確認してください。", answers: [{ text: "ほぼ毎日、人手不足を感じる", score: 10, tag: "人手不足" }, { text: "週に何度か感じる", score: 7, tag: "人手不足" }, { text: "たまに感じる", score: 4, tag: "人手不足" }, { text: "ほとんど感じない", score: 0, tag: "人手不足" }] },
+      { title: "夜勤の負担は限界に近いですか？", sub: "ワンオペ、仮眠なし、急変対応、明け残業などを含めて考えてください。", answers: [{ text: "かなり限界。体調にも出ている", score: 10, tag: "夜勤負担" }, { text: "しんどいが、何とか耐えている", score: 7, tag: "夜勤負担" }, { text: "普通程度の負担", score: 3, tag: "夜勤負担" }, { text: "夜勤負担は少ない", score: 0, tag: "夜勤負担" }] },
+      { title: "人間関係に強いストレスがありますか？", sub: "陰口、派閥、無視、責任押し付け、強い口調などがあるかを見てください。", answers: [{ text: "出勤前から憂うつになるレベル", score: 10, tag: "人間関係" }, { text: "特定の人がかなりストレス", score: 7, tag: "人間関係" }, { text: "多少あるが許容範囲", score: 3, tag: "人間関係" }, { text: "人間関係は良い", score: 0, tag: "人間関係" }] },
+      { title: "サービス残業や持ち帰り業務はありますか？", sub: "記録、委員会、研修準備、申し送り、会議なども含めてください。", answers: [{ text: "当たり前のようにある", score: 10, tag: "サービス残業" }, { text: "月に何度もある", score: 7, tag: "サービス残業" }, { text: "たまにある", score: 4, tag: "サービス残業" }, { text: "ほとんどない", score: 0, tag: "サービス残業" }] },
+      { title: "給与と業務量は見合っていますか？", sub: "夜勤、入浴、看取り、急変対応、記録量、責任の重さと比べて考えてください。", answers: [{ text: "まったく見合っていない", score: 10, tag: "給与不満" }, { text: "かなり不満がある", score: 7, tag: "給与不満" }, { text: "少し不満がある", score: 4, tag: "給与不満" }, { text: "おおむね納得している", score: 0, tag: "給与不満" }] },
+      { title: "休みや希望シフトは通りますか？", sub: "有休、連休、子どもの予定、通院、家庭事情への配慮を含めてください。", answers: [{ text: "ほぼ通らない。言いづらい", score: 10, tag: "シフト不満" }, { text: "かなり通りにくい", score: 7, tag: "シフト不満" }, { text: "たまに通らない", score: 3, tag: "シフト不満" }, { text: "比較的通る", score: 0, tag: "シフト不満" }] },
+      { title: "事故や急変時の責任が現場に偏っていますか？", sub: "管理者や看護師、施設側のフォロー体制があるかを見てください。", answers: [{ text: "現場任せでかなり怖い", score: 10, tag: "責任過多" }, { text: "フォローは弱い", score: 7, tag: "責任過多" }, { text: "最低限のフォローはある", score: 3, tag: "責任過多" }, { text: "体制は整っている", score: 0, tag: "責任過多" }] },
+      { title: "教育や引き継ぎは十分ですか？", sub: "新人放置、マニュアルなし、聞きにくい空気、見て覚えろ文化があるかを確認してください。", answers: [{ text: "ほぼ放置。かなり危険", score: 10, tag: "教育不足" }, { text: "不十分で不安が多い", score: 7, tag: "教育不足" }, { text: "最低限はある", score: 3, tag: "教育不足" }, { text: "かなり丁寧", score: 0, tag: "教育不足" }] },
+      { title: "体やメンタルに不調が出ていますか？", sub: "眠れない、食欲がない、涙が出る、腰痛、頭痛、出勤前の動悸などを含めてください。", answers: [{ text: "明確に出ている。危ないと思う", score: 12, tag: "心身不調" }, { text: "少しずつ出ている", score: 8, tag: "心身不調" }, { text: "疲れはあるが回復できる", score: 3, tag: "心身不調" }, { text: "特に問題ない", score: 0, tag: "心身不調" }] },
+      { title: "この職場で1年後も働くイメージがありますか？", sub: "理屈ではなく、直感で答えてください。", answers: [{ text: "正直、無理だと思う", score: 12, tag: "継続困難" }, { text: "かなり迷っている", score: 8, tag: "継続困難" }, { text: "条件次第では続けられる", score: 4, tag: "継続困難" }, { text: "続けるイメージがある", score: 0, tag: "継続困難" }] }
     ];
-
-    let currentQuestion = 0;
-    let totalScore = 0;
-    let selectedTags = {};
-
-    function startDiagnosis() {
-      document.getElementById("top").classList.add("hidden");
-      document.getElementById("quiz").classList.remove("hidden");
-      showQuestion();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    function showQuestion() {
-      const q = questions[currentQuestion];
-      const progress = ((currentQuestion + 1) / questions.length) * 100;
-
-      document.getElementById("progressCount").textContent = `${currentQuestion + 1} / ${questions.length}`;
-      document.getElementById("progressPercent").textContent = `${Math.round(progress)}%`;
-      document.getElementById("progressFill").style.width = `${progress}%`;
-      document.getElementById("questionTitle").textContent = q.title;
-      document.getElementById("questionSub").textContent = q.sub;
-
-      const answers = document.getElementById("answers");
-      answers.innerHTML = "";
-
-      q.answers.forEach(answer => {
-        const button = document.createElement("button");
-        button.className = "answer-button";
-        button.textContent = answer.text;
-        button.onclick = () => chooseAnswer(answer.score, answer.tag);
-        answers.appendChild(button);
-      });
-    }
-
-    function chooseAnswer(score, tag) {
-      totalScore += score;
-      selectedTags[tag] = (selectedTags[tag] || 0) + score;
-
-      currentQuestion++;
-
-      if (currentQuestion < questions.length) {
-        showQuestion();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      } else {
-        showResult();
-      }
-    }
-
-    function showResult() {
-      document.getElementById("quiz").classList.add("hidden");
-      document.getElementById("result").classList.remove("hidden");
-
-      const maxScore = 101;
-      const percent = Math.min(100, Math.round((totalScore / maxScore) * 100));
-
-      const scoreCircle = document.getElementById("scoreCircle");
-      const scoreNumber = document.getElementById("scoreNumber");
-      const resultTitle = document.getElementById("resultTitle");
-      const resultMessage = document.getElementById("resultMessage");
-
-      scoreNumber.textContent = percent;
-
-      let color = "linear-gradient(135deg, #22c55e, #16a34a)";
-      let title = "ホワイト寄り。ただし油断は禁物";
-      let message = "今の職場は、現時点では深刻なブラック度は高くありません。ただし、介護現場は人員状況や管理者変更で一気に悪化することがあります。給与・休み・人間関係の3点は定期的に確認してください。";
-
-      if (percent >= 75) {
-        color = "linear-gradient(135deg, #ef4444, #991b1b)";
-        title = "危険度MAX。逃げ道の確保を優先";
-        message = "かなり危険な状態です。あなたの我慢や根性で解決する段階を超えている可能性があります。すぐ退職と決める必要はありませんが、求人比較・相談先・証拠メモ・体調確認など、逃げ道を先に確保してください。";
-      } else if (percent >= 55) {
-        color = "linear-gradient(135deg, #f97316, #c2410c)";
-        title = "ブラック予備軍。転職準備ライン";
-        message = "今の職場は、かなり負担が蓄積している可能性があります。続けるなら改善条件を明確にし、変わらない場合の選択肢を持つべきです。情報収集だけでも始めておくと、精神的な逃げ場になります。";
-      } else if (percent >= 35) {
-        color = "linear-gradient(135deg, #facc15, #ca8a04)";
-        title = "黄色信号。比較対象を持つべき";
-        message = "すぐに危険とは言い切れませんが、不満や違和感が積み上がる前段階です。今の職場だけを基準にせず、他施設の給与・夜勤回数・人員体制と比較してください。";
-      }
-
-      scoreCircle.style.background = color;
-      resultTitle.textContent = title;
-      resultMessage.textContent = message;
-
-      showRiskItems();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    function showRiskItems() {
-      const riskList = document.getElementById("riskList");
-      riskList.innerHTML = "";
-
-      const sorted = Object.entries(selectedTags)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 3);
-
-      const advice = {
-        "人手不足": "欠員が常態化している職場は、事故・疲弊・離職が連鎖しやすいです。",
-        "夜勤負担": "夜勤負担が強い場合、体調悪化と判断ミスのリスクが上がります。",
-        "人間関係": "人間関係の悪化は、給与以上に離職理由になりやすい重要項目です。",
-        "サービス残業": "無償労働が普通になっている場合、労務管理に問題がある可能性があります。",
-        "給与不満": "業務量と給与が見合わない状態が続くと、納得感が失われます。",
-        "シフト不満": "休みが取れない職場は、生活全体を削ってしまいます。",
-        "責任過多": "事故や急変対応を現場任せにする職場は、精神的負担が大きくなります。",
-        "教育不足": "教育不足は新人だけでなく、既存職員の負担増にもつながります。",
-        "心身不調": "体やメンタルに症状が出ている場合、最優先で休息と相談が必要です。",
-        "継続困難": "1年後が想像できない場合、すでに心が限界を知らせている可能性があります。"
-      };
-
-      if (sorted.length === 0) {
-        const div = document.createElement("div");
-        div.className = "risk-item";
-        div.innerHTML = "<strong>大きな危険項目は少なめ</strong>今の状態を維持しつつ、給与・人員・休みの変化には注意してください。";
-        riskList.appendChild(div);
-        return;
-      }
-
-      sorted.forEach(([tag, score]) => {
-        const div = document.createElement("div");
-        div.className = "risk-item";
-        div.innerHTML = `<strong>${tag}</strong>${advice[tag] || "この項目は注意が必要です。"}`;
-        riskList.appendChild(div);
-      });
-    }
-
-    function restartDiagnosis() {
-      currentQuestion = 0;
-      totalScore = 0;
-      selectedTags = {};
-      document.getElementById("result").classList.add("hidden");
-      document.getElementById("top").classList.remove("hidden");
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    let currentQuestion = 0, totalScore = 0, selectedTags = {};
+    function startDiagnosis() { document.getElementById("top").classList.add("hidden"); document.getElementById("quiz").classList.remove("hidden"); showQuestion(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+    function showQuestion() { const q = questions[currentQuestion]; const progress = ((currentQuestion + 1) / questions.length) * 100; document.getElementById("progressCount").textContent = `${currentQuestion + 1} / ${questions.length}`; document.getElementById("progressPercent").textContent = `${Math.round(progress)}%`; document.getElementById("progressFill").style.width = `${progress}%`; document.getElementById("questionTitle").textContent = q.title; document.getElementById("questionSub").textContent = q.sub; const answers = document.getElementById("answers"); answers.innerHTML = ""; q.answers.forEach(answer => { const button = document.createElement("button"); button.className = "answer-button"; button.textContent = answer.text; button.onclick = () => chooseAnswer(answer.score, answer.tag); answers.appendChild(button); }); }
+    function chooseAnswer(score, tag) { totalScore += score; selectedTags[tag] = (selectedTags[tag] || 0) + score; currentQuestion++; if (currentQuestion < questions.length) { showQuestion(); window.scrollTo({ top: 0, behavior: "smooth" }); } else { showResult(); } }
+    function showResult() { document.getElementById("quiz").classList.add("hidden"); document.getElementById("result").classList.remove("hidden"); const percent = Math.min(100, Math.round((totalScore / 101) * 100)); document.getElementById("scoreNumber").textContent = percent; const scoreCircle = document.getElementById("scoreCircle"), resultTitle = document.getElementById("resultTitle"), resultMessage = document.getElementById("resultMessage"); let color = "linear-gradient(135deg, #22c55e, #16a34a)", title = "ストレス低め。ただし油断は禁物", message = "今の職場は、現時点では深刻なストレス度は高くありません。ただし、人員状況や管理者変更で一気に悪化することがあります。"; if (percent >= 75) { color = "linear-gradient(135deg, #ef4444, #991b1b)"; title = "ストレス危険度MAX。逃げ道の確保を優先"; message = "かなり危険な状態です。あなたの我慢や根性で解決する段階を超えている可能性があります。すぐ退職と決める必要はありませんが、求人比較・相談先・証拠メモ・体調確認など、逃げ道を先に確保してください。"; } else if (percent >= 55) { color = "linear-gradient(135deg, #f97316, #c2410c)"; title = "ストレス高め。転職準備ライン"; message = "今の職場は、かなり負担が蓄積している可能性があります。続けるなら改善条件を明確にし、変わらない場合の選択肢を持つべきです。"; } else if (percent >= 35) { color = "linear-gradient(135deg, #facc15, #ca8a04)"; title = "黄色信号。比較対象を持つべき"; message = "すぐに危険とは言い切れませんが、不満や違和感が積み上がる前段階です。今の職場だけを基準にせず、他施設の給与・夜勤回数・人員体制と比較してください。"; } scoreCircle.style.background = color; resultTitle.textContent = title; resultMessage.textContent = message; showRiskItems(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+    function showRiskItems() { const riskList = document.getElementById("riskList"); riskList.innerHTML = ""; const sorted = Object.entries(selectedTags).sort((a, b) => b[1] - a[1]).slice(0, 3); const advice = { "人手不足": "欠員が常態化している職場は、事故・疲弊・離職が連鎖しやすいです。", "夜勤負担": "夜勤負担が強い場合、体調悪化と判断ミスのリスクが上がります。", "人間関係": "人間関係の悪化は、給与以上に離職理由になりやすい重要項目です。", "サービス残業": "無償労働が普通になっている場合、労務管理に問題がある可能性があります。", "給与不満": "業務量と給与が見合わない状態が続くと、納得感が失われます。", "シフト不満": "休みが取れない職場は、生活全体を削ってしまいます。", "責任過多": "事故や急変対応を現場任せにする職場は、精神的負担が大きくなります。", "教育不足": "教育不足は新人だけでなく、既存職員の負担増にもつながります。", "心身不調": "体やメンタルに症状が出ている場合、最優先で休息と相談が必要です。", "継続困難": "1年後が想像できない場合、すでに心が限界を知らせている可能性があります。" }; sorted.forEach(([tag]) => { const div = document.createElement("div"); div.className = "risk-item"; div.innerHTML = `<strong>${tag}</strong>${advice[tag] || "この項目は注意が必要です。"}`; riskList.appendChild(div); }); }
+    function restartDiagnosis() { currentQuestion = 0; totalScore = 0; selectedTags = {}; document.getElementById("result").classList.add("hidden"); document.getElementById("top").classList.remove("hidden"); window.scrollTo({ top: 0, behavior: "smooth" }); }
   </script>
 </body>
 </html>
-s
