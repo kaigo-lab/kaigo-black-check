@@ -100,7 +100,7 @@ button,.btn{width:100%;display:block;border:none;border-radius:18px;padding:16px
 
 <div class="card">
 <h2>みんなの結果に匿名で参加</h2>
-<p>あなたの結果を匿名で送信すると、介護士のリアルデータとして蓄積されます。</p>
+<p>下のボタンを押すと、保存用ページが新しいタブで開きます。<br>「success」と表示されたら保存完了です。</p>
 <button class="primary" onclick="sendAnonymousData()">匿名で結果を共有する</button>
 <p id="sendStatus" class="small"></p>
 </div>
@@ -205,8 +205,6 @@ riskList.appendChild(div);
 function sendAnonymousData(){
 if(!latestResult)return;
 
-document.getElementById("sendStatus").textContent="送信中...";
-
 const url =
 API_URL
 + "?totalScore=" + encodeURIComponent(latestResult.totalScore)
@@ -214,15 +212,10 @@ API_URL
 + "&selectedTags=" + encodeURIComponent(latestResult.selectedTags)
 + "&t=" + new Date().getTime();
 
-const iframe = document.createElement("iframe");
-iframe.style.display = "none";
-iframe.src = url;
-document.body.appendChild(iframe);
+window.open(url, "_blank");
 
-setTimeout(function(){
 document.getElementById("sendStatus").textContent =
-"送信しました。スプレッドシートを確認してください。";
-},1500);
+"保存用ページを開きました。successと表示されたら保存完了です。";
 }
 
 function restartDiagnosis(){
