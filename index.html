@@ -13,7 +13,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sa
 .badge{display:inline-block;background:#e0f2fe;color:#0369a1;font-size:13px;font-weight:800;padding:6px 12px;border-radius:999px;margin-bottom:14px}
 h1{font-size:30px;line-height:1.3;margin-bottom:14px;color:#0f172a}
 h2{font-size:22px;margin-bottom:12px;color:#0f172a}
-p,li{font-size:15px;color:#475569}
+p{font-size:15px;color:#475569}
 .notice{background:#fff7ed;border:1px solid #fed7aa;border-radius:18px;padding:14px;font-size:14px;color:#9a3412;margin-top:16px;text-align:left}
 button,.btn{width:100%;display:block;border:none;border-radius:18px;padding:16px 18px;font-size:16px;font-weight:900;cursor:pointer;text-align:center;text-decoration:none;margin-top:14px}
 .primary{background:linear-gradient(135deg,#0ea5e9,#2563eb);color:white}
@@ -23,9 +23,8 @@ button,.btn{width:100%;display:block;border:none;border-radius:18px;padding:16px
 .gray{background:#f1f5f9;color:#334155}
 .hidden{display:none}
 .small{font-size:12px;color:#64748b;margin-top:10px}
-.progress-wrap{margin-bottom:20px}
 .progress-text{display:flex;justify-content:space-between;font-size:13px;font-weight:800;margin-bottom:8px;color:#64748b}
-.progress-bar{height:10px;background:#e2e8f0;border-radius:999px;overflow:hidden}
+.progress-bar{height:10px;background:#e2e8f0;border-radius:999px;overflow:hidden;margin-bottom:20px}
 .progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#38bdf8,#2563eb)}
 .question-title{font-size:22px;font-weight:950;margin-bottom:12px;color:#0f172a}
 .question-sub{font-size:14px;margin-bottom:18px;color:#64748b}
@@ -65,14 +64,11 @@ button,.btn{width:100%;display:block;border:none;border-radius:18px;padding:16px
 </section>
 
 <section id="quiz" class="card hidden">
-<div class="progress-wrap">
 <div class="progress-text">
 <span id="progressCount">1 / 4</span>
 <span id="progressPercent">25%</span>
 </div>
 <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
-</div>
-
 <div id="questionTitle" class="question-title"></div>
 <div id="questionSub" class="question-sub"></div>
 <div id="answers" class="answers"></div>
@@ -127,46 +123,10 @@ button,.btn{width:100%;display:block;border:none;border-radius:18px;padding:16px
 const API_URL = "https://script.google.com/macros/s/AKfycbz9KtfJKyxym9drJQ_pjC-ZQe3e-0r5A-hLtZQiQE5wNppaP8HJOoPmvH3RW7KCBYVIHA/exec";
 
 const questions = [
-{
-title:"人手不足が常態化していますか？",
-sub:"急な欠勤や欠員が出るたびに、現場の誰かが無理をして埋めている状態か確認してください。",
-answers:[
-{text:"ほぼ毎日、人手不足を感じる",score:10,tag:"人手不足"},
-{text:"週に何度か感じる",score:7,tag:"人手不足"},
-{text:"たまに感じる",score:4,tag:"人手不足"},
-{text:"ほとんど感じない",score:0,tag:"人手不足"}
-]
-},
-{
-title:"夜勤の負担は限界に近いですか？",
-sub:"ワンオペ、仮眠なし、急変対応などを含めて考えてください。",
-answers:[
-{text:"かなり限界",score:10,tag:"夜勤負担"},
-{text:"しんどい",score:7,tag:"夜勤負担"},
-{text:"普通",score:3,tag:"夜勤負担"},
-{text:"負担少ない",score:0,tag:"夜勤負担"}
-]
-},
-{
-title:"人間関係に強いストレスがありますか？",
-sub:"陰口、派閥、無視、強い口調などがあるかを見てください。",
-answers:[
-{text:"かなりある",score:10,tag:"人間関係"},
-{text:"少しある",score:7,tag:"人間関係"},
-{text:"多少ある",score:3,tag:"人間関係"},
-{text:"ほぼない",score:0,tag:"人間関係"}
-]
-},
-{
-title:"サービス残業はありますか？",
-sub:"記録、会議、委員会などを含めてください。",
-answers:[
-{text:"かなりある",score:10,tag:"サービス残業"},
-{text:"時々ある",score:7,tag:"サービス残業"},
-{text:"少しある",score:3,tag:"サービス残業"},
-{text:"ない",score:0,tag:"サービス残業"}
-]
-}
+{title:"人手不足が常態化していますか？",sub:"急な欠勤や欠員が出るたびに、現場の誰かが無理をして埋めている状態か確認してください。",answers:[{text:"ほぼ毎日、人手不足を感じる",score:10,tag:"人手不足"},{text:"週に何度か感じる",score:7,tag:"人手不足"},{text:"たまに感じる",score:4,tag:"人手不足"},{text:"ほとんど感じない",score:0,tag:"人手不足"}]},
+{title:"夜勤の負担は限界に近いですか？",sub:"ワンオペ、仮眠なし、急変対応などを含めて考えてください。",answers:[{text:"かなり限界",score:10,tag:"夜勤負担"},{text:"しんどい",score:7,tag:"夜勤負担"},{text:"普通",score:3,tag:"夜勤負担"},{text:"負担少ない",score:0,tag:"夜勤負担"}]},
+{title:"人間関係に強いストレスがありますか？",sub:"陰口、派閥、無視、強い口調などがあるかを見てください。",answers:[{text:"かなりある",score:10,tag:"人間関係"},{text:"少しある",score:7,tag:"人間関係"},{text:"多少ある",score:3,tag:"人間関係"},{text:"ほぼない",score:0,tag:"人間関係"}]},
+{title:"サービス残業はありますか？",sub:"記録、会議、委員会などを含めてください。",answers:[{text:"かなりある",score:10,tag:"サービス残業"},{text:"時々ある",score:7,tag:"サービス残業"},{text:"少しある",score:3,tag:"サービス残業"},{text:"ない",score:0,tag:"サービス残業"}]}
 ];
 
 let currentQuestion=0;
@@ -183,7 +143,6 @@ showQuestion();
 function showQuestion(){
 const q=questions[currentQuestion];
 const progress=((currentQuestion+1)/questions.length)*100;
-
 document.getElementById("progressCount").textContent=`${currentQuestion+1} / ${questions.length}`;
 document.getElementById("progressPercent").textContent=`${Math.round(progress)}%`;
 document.getElementById("progressFill").style.width=`${progress}%`;
@@ -192,7 +151,6 @@ document.getElementById("questionSub").textContent=q.sub;
 
 const answers=document.getElementById("answers");
 answers.innerHTML="";
-
 q.answers.forEach(answer=>{
 const button=document.createElement("button");
 button.className="answer-button";
@@ -206,12 +164,7 @@ function chooseAnswer(score,tag){
 totalScore+=score;
 selectedTags[tag]=(selectedTags[tag]||0)+score;
 currentQuestion++;
-
-if(currentQuestion<questions.length){
-showQuestion();
-}else{
-showResult();
-}
+if(currentQuestion<questions.length){showQuestion()}else{showResult()}
 }
 
 function showResult(){
@@ -230,7 +183,6 @@ document.getElementById("resultTitle").textContent=deviation>=70?"限界危険�
 document.getElementById("resultMessage").textContent="今の職場環境を客観視することが重要です。";
 
 latestResult={
-createdAt:new Date().toISOString(),
 totalScore:totalScore,
 deviation:deviation,
 selectedTags:JSON.stringify(selectedTags)
@@ -242,11 +194,7 @@ showRiskItems();
 function showRiskItems(){
 const riskList=document.getElementById("riskList");
 riskList.innerHTML="";
-
-Object.entries(selectedTags)
-.sort((a,b)=>b[1]-a[1])
-.slice(0,3)
-.forEach(([tag])=>{
+Object.entries(selectedTags).sort((a,b)=>b[1]-a[1]).slice(0,3).forEach(([tag])=>{
 const div=document.createElement("div");
 div.className="risk-item";
 div.innerHTML=`<strong>${tag}</strong>負担が高い可能性があります。`;
@@ -263,13 +211,21 @@ const url =
 API_URL
 + "?totalScore=" + encodeURIComponent(latestResult.totalScore)
 + "&deviation=" + encodeURIComponent(latestResult.deviation)
-+ "&selectedTags=" + encodeURIComponent(latestResult.selectedTags);
++ "&selectedTags=" + encodeURIComponent(latestResult.selectedTags)
++ "&t=" + new Date().getTime();
 
 const img = new Image();
+img.onload = function(){
+document.getElementById("sendStatus").textContent="匿名送信しました。スプレッドシートを確認してください。";
+};
+img.onerror = function(){
+document.getElementById("sendStatus").textContent="送信しました。数秒後にスプレッドシートを確認してください。";
+};
 img.src = url;
 
-document.getElementById("sendStatus").textContent =
-"匿名送信しました。数秒後にスプレッドシートへ反映されます。";
+setTimeout(function(){
+document.getElementById("sendStatus").textContent="送信しました。スプレッドシートを確認してください。";
+},1000);
 }
 
 function restartDiagnosis(){
@@ -277,7 +233,6 @@ currentQuestion=0;
 totalScore=0;
 selectedTags={};
 latestResult=null;
-
 document.getElementById("result").classList.add("hidden");
 document.getElementById("top").classList.remove("hidden");
 }
