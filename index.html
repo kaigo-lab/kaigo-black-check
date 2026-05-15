@@ -3,521 +3,722 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>介護士ストレス偏差値診断</title>
-<meta name="description" content="介護士向けの職場ストレス診断。人間関係、夜勤、人手不足、給与、シフト、記録業務などからストレス度をチェックできます。">
+
+<meta name="description"
+content="介護士向けストレス診断。夜勤、人間関係、人手不足、給与不満などから職場ストレスを診断。">
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
 body{
-  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","YuGothic","Meiryo",sans-serif;
-  background:linear-gradient(180deg,#f4fbff 0%,#fff7f2 100%);
-  color:#1f2937;
-  line-height:1.7;
-  min-height:100vh;
+font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
+background:linear-gradient(180deg,#f4fbff 0%,#fff7f2 100%);
+color:#1f2937;
+line-height:1.7;
+min-height:100vh;
 }
-.container{max-width:720px;margin:0 auto;padding:20px 16px 48px}
+
+.container{
+max-width:720px;
+margin:0 auto;
+padding:18px 14px 40px;
+}
+
 .card{
-  background:#fff;
-  border-radius:26px;
-  padding:24px 20px;
-  margin-top:18px;
-  box-shadow:0 14px 36px rgba(15,23,42,.08);
-  border:1px solid rgba(226,232,240,.9);
+background:white;
+border-radius:24px;
+padding:22px 18px;
+margin-top:18px;
+box-shadow:0 12px 30px rgba(15,23,42,.08);
 }
-.hero{text-align:center}
+
+.hero{
+text-align:center;
+}
+
 .badge{
-  display:inline-block;
-  background:#e0f2fe;
-  color:#0369a1;
-  font-weight:800;
-  font-size:13px;
-  padding:7px 13px;
-  border-radius:999px;
-  margin-bottom:14px;
+display:inline-block;
+background:#e0f2fe;
+color:#0369a1;
+font-size:13px;
+font-weight:800;
+padding:6px 12px;
+border-radius:999px;
+margin-bottom:14px;
 }
-h1{font-size:30px;line-height:1.3;color:#0f172a;margin-bottom:14px}
-h2{font-size:22px;color:#0f172a;margin-bottom:12px}
-p,li{font-size:15px;color:#475569}
-.lead{margin-bottom:18px}
+
+h1{
+font-size:30px;
+line-height:1.3;
+margin-bottom:14px;
+color:#0f172a;
+}
+
+h2{
+font-size:22px;
+margin-bottom:12px;
+color:#0f172a;
+}
+
+p,li{
+font-size:15px;
+color:#475569;
+}
+
 .notice{
-  background:#fff7ed;
-  border:1px solid #fed7aa;
-  border-radius:18px;
-  padding:14px;
-  text-align:left;
-  color:#9a3412;
-  font-size:14px;
-  margin-top:16px;
+background:#fff7ed;
+border:1px solid #fed7aa;
+border-radius:18px;
+padding:14px;
+font-size:14px;
+color:#9a3412;
+margin-top:16px;
+text-align:left;
 }
+
 button,.btn{
-  width:100%;
-  display:block;
-  text-align:center;
-  border:none;
-  border-radius:18px;
-  padding:16px 18px;
-  font-size:16px;
-  font-weight:900;
-  cursor:pointer;
-  text-decoration:none;
-  margin-top:14px;
+width:100%;
+display:block;
+border:none;
+border-radius:18px;
+padding:16px 18px;
+font-size:16px;
+font-weight:900;
+cursor:pointer;
+text-align:center;
+text-decoration:none;
+margin-top:14px;
 }
-.primary{background:linear-gradient(135deg,#0ea5e9,#2563eb);color:#fff}
-.tiktok{background:#111;color:#fff}
-.line{background:#06c755;color:#fff}
-.note{background:#111;color:#fff}
-.orange{background:linear-gradient(135deg,#f97316,#ea580c);color:#fff}
-.gray{background:#f1f5f9;color:#334155}
-.hidden{display:none}
-.small{font-size:12px;color:#64748b;margin-top:10px}
-.progress-text{display:flex;justify-content:space-between;font-size:13px;font-weight:800;color:#64748b;margin-bottom:8px}
-.progress-bar{height:10px;background:#e2e8f0;border-radius:999px;overflow:hidden;margin-bottom:20px}
-.progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#38bdf8,#2563eb)}
-.question-title{font-size:22px;font-weight:950;color:#0f172a;margin-bottom:10px}
-.question-sub{font-size:14px;color:#64748b;margin-bottom:18px}
-.answers{display:grid;gap:12px}
+
+.primary{
+background:linear-gradient(135deg,#0ea5e9,#2563eb);
+color:white;
+}
+
+.tiktok{
+background:#111;
+color:white;
+}
+
+.line{
+background:#06c755;
+color:white;
+}
+
+.note{
+background:#111;
+color:white;
+}
+
+.gray{
+background:#f1f5f9;
+color:#334155;
+}
+
+.hidden{
+display:none;
+}
+
+.small{
+font-size:12px;
+color:#64748b;
+margin-top:10px;
+}
+
+.progress-wrap{
+margin-bottom:20px;
+}
+
+.progress-text{
+display:flex;
+justify-content:space-between;
+font-size:13px;
+font-weight:800;
+margin-bottom:8px;
+color:#64748b;
+}
+
+.progress-bar{
+height:10px;
+background:#e2e8f0;
+border-radius:999px;
+overflow:hidden;
+}
+
+.progress-fill{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#38bdf8,#2563eb);
+}
+
+.question-title{
+font-size:22px;
+font-weight:950;
+margin-bottom:12px;
+color:#0f172a;
+}
+
+.question-sub{
+font-size:14px;
+margin-bottom:18px;
+color:#64748b;
+}
+
+.answers{
+display:grid;
+gap:12px;
+}
+
 .answer-button{
-  background:#f8fafc;
-  color:#0f172a;
-  text-align:left;
-  border:1px solid #e2e8f0;
-  box-shadow:none;
+background:#f8fafc;
+border:1px solid #e2e8f0;
+text-align:left;
+color:#0f172a;
 }
-.answer-button:hover{background:#eff6ff;border-color:#93c5fd}
+
+.answer-button:hover{
+background:#eff6ff;
+border-color:#93c5fd;
+}
+
 .score-circle{
-  width:150px;
-  height:150px;
-  border-radius:50%;
-  margin:0 auto 16px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  color:white;
-  background:linear-gradient(135deg,#22c55e,#16a34a);
-  box-shadow:0 18px 32px rgba(15,23,42,.18);
+width:150px;
+height:150px;
+border-radius:50%;
+margin:0 auto 18px;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+color:white;
+background:linear-gradient(135deg,#22c55e,#16a34a);
+box-shadow:0 18px 32px rgba(15,23,42,.18);
 }
-.score-number{font-size:44px;font-weight:950;line-height:1}
-.score-label{font-size:13px;font-weight:800}
-.result-title{text-align:center;font-size:24px;font-weight:950;color:#0f172a;margin-bottom:10px}
-.result-message{background:#f8fafc;border-radius:18px;padding:16px;margin-top:14px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
-.mini{background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:14px;text-align:center;font-size:13px;color:#475569}
-.mini strong{display:block;font-size:20px;color:#0f172a;margin-top:4px}
-.risk-list{display:grid;gap:10px;margin-top:14px}
-.risk-item{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:13px 14px;font-size:14px}
-.risk-item strong{display:block;color:#0f172a;margin-bottom:4px}
-ul{padding-left:20px;margin-top:8px}
-.footer{text-align:center;font-size:12px;color:#94a3b8;margin-top:24px}
-@media(max-width:420px){
-  h1{font-size:27px}
-  .container{padding:14px 12px 36px}
+
+.score-number{
+font-size:44px;
+font-weight:950;
+line-height:1;
 }
+
+.score-label{
+font-size:13px;
+font-weight:800;
+}
+
+.result-title{
+text-align:center;
+font-size:24px;
+font-weight:950;
+margin-bottom:10px;
+}
+
+.result-message{
+background:#f8fafc;
+border-radius:18px;
+padding:16px;
+margin-top:14px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin-top:16px;
+}
+
+.mini{
+background:#f8fafc;
+border:1px solid #e2e8f0;
+border-radius:16px;
+padding:14px;
+text-align:center;
+font-size:13px;
+}
+
+.mini strong{
+display:block;
+font-size:20px;
+margin-top:4px;
+color:#0f172a;
+}
+
+.risk-list{
+display:grid;
+gap:10px;
+margin-top:14px;
+}
+
+.risk-item{
+background:white;
+border:1px solid #e2e8f0;
+border-radius:16px;
+padding:13px 14px;
+font-size:14px;
+}
+
+.risk-item strong{
+display:block;
+margin-bottom:4px;
+color:#0f172a;
+}
+
+.footer{
+text-align:center;
+font-size:12px;
+color:#94a3b8;
+margin-top:24px;
+}
+
 </style>
 </head>
 
 <body>
+
 <main class="container">
 
 <section id="top" class="card hero">
-  <div class="badge">介護士向け｜無料ストレス診断</div>
-  <h1>介護士ストレス偏差値診断<br>「あなたの職場ストレス、普通？」</h1>
-  <p class="lead">
-    人間関係・夜勤・人手不足・給与・シフト・記録業務などから、今の職場ストレスをチェックします。
-  </p>
 
-  <div class="notice">
-    <strong>診断結果は匿名で共有できます。</strong><br>
-    蓄積された結果は、介護士のリアルデータとして集計・発信します。
-  </div>
+<div class="badge">
+介護士向け｜無料ストレス診断
+</div>
 
-  <a class="btn tiktok" href="https://www.tiktok.com/" target="_blank" rel="noopener">
-    TikTokをフォローする
-  </a>
+<h1>
+介護士ストレス偏差値診断<br>
+「あなたの職場ストレス、普通？」
+</h1>
 
-  <button class="primary" onclick="startDiagnosis()">フォローしたので診断する</button>
+<p>
+夜勤・人間関係・人手不足・給与・シフトなどから、
+今の職場ストレスを診断します。
+</p>
 
-  <p class="small">
-    ※フォロー確認は自動では行いません。介護士のリアルデータを広げるため、ぜひフォローしてからご利用ください。
-  </p>
-</section>
+<div class="notice">
+<strong>診断結果は匿名で共有できます。</strong><br>
+蓄積された結果は、介護士のリアルデータとして集計・公開します。
+</div>
 
-<section class="card">
-  <h2>この診断でわかること</h2>
-  <ul>
-    <li>あなたのストレス偏差値</li>
-    <li>限界度・退職危険度の目安</li>
-    <li>ストレス要因TOP3</li>
-    <li>介護士のリアルデータ蓄積</li>
-  </ul>
-  <p class="small">
-    ※医療的診断ではありません。職場ストレスを見える化するための簡易診断です。
-  </p>
+<a
+class="btn tiktok"
+href="https://www.tiktok.com/@kaigo_kasai_edogawaku"
+target="_blank">
+
+TikTokをフォローする
+
+</a>
+
+<button
+class="primary"
+onclick="startDiagnosis()">
+
+フォローしたので診断する
+
+</button>
+
+<p class="small">
+※フォロー確認は自動では行いません。
+</p>
+
 </section>
 
 <section id="quiz" class="card hidden">
-  <div class="progress-text">
-    <span id="progressCount">1 / 10</span>
-    <span id="progressPercent">10%</span>
-  </div>
-  <div class="progress-bar">
-    <div id="progressFill" class="progress-fill"></div>
-  </div>
 
-  <div id="questionTitle" class="question-title"></div>
-  <p id="questionSub" class="question-sub"></p>
-  <div id="answers" class="answers"></div>
+<div class="progress-wrap">
+
+<div class="progress-text">
+<span id="progressCount">1 / 10</span>
+<span id="progressPercent">10%</span>
+</div>
+
+<div class="progress-bar">
+<div id="progressFill" class="progress-fill"></div>
+</div>
+
+</div>
+
+<div id="questionTitle" class="question-title"></div>
+<div id="questionSub" class="question-sub"></div>
+
+<div id="answers" class="answers"></div>
+
 </section>
 
 <section id="result" class="hidden">
 
-  <div class="card">
-    <div class="score-circle" id="scoreCircle">
-      <div id="scoreNumber" class="score-number">0</div>
-      <div class="score-label">ストレス度</div>
-    </div>
+<div class="card">
 
-    <h2 id="resultTitle" class="result-title"></h2>
-    <div id="resultMessage" class="result-message"></div>
+<div class="score-circle" id="scoreCircle">
 
-    <div class="grid">
-      <div class="mini">ストレス偏差値<strong id="deviationText">---</strong></div>
-      <div class="mini">総ストレス点<strong id="totalText">---</strong></div>
-      <div class="mini">限界度<strong id="dangerText">---</strong></div>
-      <div class="mini">全体位置<strong id="rankText">---</strong></div>
-    </div>
-  </div>
+<div id="scoreNumber" class="score-number">
+0
+</div>
 
-  <div class="card">
-    <h2>あなたの主なストレス要因</h2>
-    <div id="riskList" class="risk-list"></div>
-  </div>
+<div class="score-label">
+ストレス度
+</div>
 
-  <div class="card">
-    <h2>みんなの結果に匿名で参加</h2>
-    <p>
-      あなたの結果を匿名で送信すると、介護士のリアルなストレス傾向データとして蓄積されます。
-    </p>
-    <button class="primary" onclick="sendAnonymousData()">匿名で結果を共有する</button>
-    <p id="sendStatus" class="small"></p>
-  </div>
+</div>
 
-  <div class="card">
-    <h2>診断結果の見方</h2>
-    <ul>
-      <li>偏差値70以上：限界危険ゾーン</li>
-      <li>偏差値60〜69：かなり高ストレス</li>
-      <li>偏差値50〜59：やや高め</li>
-      <li>偏差値40〜49：平均前後</li>
-      <li>偏差値39以下：比較的落ち着いている</li>
-    </ul>
-  </div>
+<h2 id="resultTitle" class="result-title"></h2>
 
-  <div class="card">
-    <h2>最新ランキングはTikTokで公開中</h2>
-    <p>
-      施設別ストレスランキング、夜勤地獄ランキング、人間関係ストレス傾向などを発信しています。
-    </p>
+<div id="resultMessage" class="result-message"></div>
 
-    <a class="btn tiktok" href="https://www.tiktok.com/" target="_blank" rel="noopener">
-      TikTokをフォローして最新データを見る
-    </a>
+<div class="grid">
 
-    <a class="btn line" href="https://lin.ee/8HmXwzg" target="_blank" rel="noopener">
-      LINEで診断結果を受け取る
-    </a>
+<div class="mini">
+ストレス偏差値
+<strong id="deviationText">---</strong>
+</div>
 
-    <a class="btn note" href="https://note.com/kaigo_tenshoku" target="_blank" rel="noopener">
-      noteで詳しい解説を読む
-    </a>
+<div class="mini">
+総ストレス点
+<strong id="totalText">---</strong>
+</div>
 
-    <button class="gray" onclick="restartDiagnosis()">もう一度診断する</button>
-  </div>
+<div class="mini">
+限界度
+<strong id="dangerText">---</strong>
+</div>
+
+<div class="mini">
+全体位置
+<strong id="rankText">---</strong>
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>
+あなたの主なストレス要因
+</h2>
+
+<div id="riskList" class="risk-list"></div>
+
+</div>
+
+<div class="card">
+
+<h2>
+みんなの結果に匿名で参加
+</h2>
+
+<p>
+あなたの結果を匿名で送信すると、
+介護士のリアルデータとして蓄積されます。
+</p>
+
+<button
+class="primary"
+onclick="sendAnonymousData()">
+
+匿名で結果を共有する
+
+</button>
+
+<p id="sendStatus" class="small"></p>
+
+</div>
+
+<div class="card">
+
+<h2>
+最新ランキングはTikTokで公開中
+</h2>
+
+<a
+class="btn tiktok"
+href="https://www.tiktok.com/@kaigo_kasai_edogawaku"
+target="_blank">
+
+TikTokを見る
+
+</a>
+
+<a
+class="btn line"
+href="https://lin.ee/8HmXwzg"
+target="_blank">
+
+LINEで相談する
+
+</a>
+
+<a
+class="btn note"
+href="https://note.com/kaigo_tenshoku"
+target="_blank">
+
+noteを見る
+
+</a>
+
+<button
+class="gray"
+onclick="restartDiagnosis()">
+
+もう一度診断する
+
+</button>
+
+</div>
 
 </section>
 
-<div class="footer">© 介護士ストレス偏差値診断</div>
+<div class="footer">
+© 介護士ストレス偏差値診断
+</div>
 
 </main>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbwHyQCTeU8zcWBJRUU0I1aFY_sEnorHetRLFooeoLy2kDZUVR9dj1pj7kRxc6IhFpnV_Q/exec";
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbwHyQCTeU8zcWBJRUU0I1aFY_sEnorHetRLFooeoLy2kDZUVR9dj1pj7kRxc6IhFpnV_Q/exec";
 
 const questions = [
-  {
-    title:"人手不足が常態化していますか？",
-    sub:"急な欠勤や欠員が出るたびに、現場の誰かが無理をして埋めている状態か確認してください。",
-    answers:[
-      {text:"ほぼ毎日、人手不足を感じる",score:10,tag:"人手不足"},
-      {text:"週に何度か感じる",score:7,tag:"人手不足"},
-      {text:"たまに感じる",score:4,tag:"人手不足"},
-      {text:"ほとんど感じない",score:0,tag:"人手不足"}
-    ]
-  },
-  {
-    title:"夜勤の負担は限界に近いですか？",
-    sub:"ワンオペ、仮眠なし、急変対応、明け残業などを含めて考えてください。",
-    answers:[
-      {text:"かなり限界。体調にも出ている",score:10,tag:"夜勤負担"},
-      {text:"しんどいが、何とか耐えている",score:7,tag:"夜勤負担"},
-      {text:"普通程度の負担",score:3,tag:"夜勤負担"},
-      {text:"夜勤負担は少ない",score:0,tag:"夜勤負担"}
-    ]
-  },
-  {
-    title:"人間関係に強いストレスがありますか？",
-    sub:"陰口、派閥、無視、責任押し付け、強い口調などがあるかを見てください。",
-    answers:[
-      {text:"出勤前から憂うつになるレベル",score:10,tag:"人間関係"},
-      {text:"特定の人がかなりストレス",score:7,tag:"人間関係"},
-      {text:"多少あるが許容範囲",score:3,tag:"人間関係"},
-      {text:"人間関係は良い",score:0,tag:"人間関係"}
-    ]
-  },
-  {
-    title:"サービス残業や持ち帰り業務はありますか？",
-    sub:"記録、委員会、研修準備、申し送り、会議なども含めてください。",
-    answers:[
-      {text:"当たり前のようにある",score:10,tag:"サービス残業"},
-      {text:"月に何度もある",score:7,tag:"サービス残業"},
-      {text:"たまにある",score:4,tag:"サービス残業"},
-      {text:"ほとんどない",score:0,tag:"サービス残業"}
-    ]
-  },
-  {
-    title:"給与と業務量は見合っていますか？",
-    sub:"夜勤、入浴、看取り、急変対応、記録量、責任の重さと比べて考えてください。",
-    answers:[
-      {text:"まったく見合っていない",score:10,tag:"給与不満"},
-      {text:"かなり不満がある",score:7,tag:"給与不満"},
-      {text:"少し不満がある",score:4,tag:"給与不満"},
-      {text:"おおむね納得している",score:0,tag:"給与不満"}
-    ]
-  },
-  {
-    title:"休みや希望シフトは通りますか？",
-    sub:"有休、連休、家庭事情への配慮を含めてください。",
-    answers:[
-      {text:"ほぼ通らない。言いづらい",score:10,tag:"シフト不満"},
-      {text:"かなり通りにくい",score:7,tag:"シフト不満"},
-      {text:"たまに通らない",score:3,tag:"シフト不満"},
-      {text:"比較的通る",score:0,tag:"シフト不満"}
-    ]
-  },
-  {
-    title:"事故や急変時の責任が現場に偏っていますか？",
-    sub:"管理者や看護師、施設側のフォロー体制があるかを見てください。",
-    answers:[
-      {text:"現場任せでかなり怖い",score:10,tag:"責任過多"},
-      {text:"フォローは弱い",score:7,tag:"責任過多"},
-      {text:"最低限のフォローはある",score:3,tag:"責任過多"},
-      {text:"体制は整っている",score:0,tag:"責任過多"}
-    ]
-  },
-  {
-    title:"教育や引き継ぎは十分ですか？",
-    sub:"新人放置、マニュアルなし、聞きにくい空気、見て覚えろ文化があるかを確認してください。",
-    answers:[
-      {text:"ほぼ放置。かなり危険",score:10,tag:"教育不足"},
-      {text:"不十分で不安が多い",score:7,tag:"教育不足"},
-      {text:"最低限はある",score:3,tag:"教育不足"},
-      {text:"かなり丁寧",score:0,tag:"教育不足"}
-    ]
-  },
-  {
-    title:"体やメンタルに不調が出ていますか？",
-    sub:"眠れない、食欲がない、涙が出る、腰痛、頭痛、出勤前の動悸などを含めてください。",
-    answers:[
-      {text:"明確に出ている。危ないと思う",score:12,tag:"心身不調"},
-      {text:"少しずつ出ている",score:8,tag:"心身不調"},
-      {text:"疲れはあるが回復できる",score:3,tag:"心身不調"},
-      {text:"特に問題ない",score:0,tag:"心身不調"}
-    ]
-  },
-  {
-    title:"この職場で1年後も働くイメージがありますか？",
-    sub:"理屈ではなく、直感で答えてください。",
-    answers:[
-      {text:"正直、無理だと思う",score:12,tag:"継続困難"},
-      {text:"かなり迷っている",score:8,tag:"継続困難"},
-      {text:"条件次第では続けられる",score:4,tag:"継続困難"},
-      {text:"続けるイメージがある",score:0,tag:"継続困難"}
-    ]
-  }
+
+{
+title:"人手不足が常態化していますか？",
+sub:"急な欠勤や欠員が出るたびに、現場の誰かが無理をして埋めている状態か確認してください。",
+answers:[
+{text:"ほぼ毎日、人手不足を感じる",score:10,tag:"人手不足"},
+{text:"週に何度か感じる",score:7,tag:"人手不足"},
+{text:"たまに感じる",score:4,tag:"人手不足"},
+{text:"ほとんど感じない",score:0,tag:"人手不足"}
+]
+},
+
+{
+title:"夜勤の負担は限界に近いですか？",
+sub:"ワンオペ、仮眠なし、急変対応などを含めて考えてください。",
+answers:[
+{text:"かなり限界",score:10,tag:"夜勤負担"},
+{text:"しんどい",score:7,tag:"夜勤負担"},
+{text:"普通",score:3,tag:"夜勤負担"},
+{text:"負担少ない",score:0,tag:"夜勤負担"}
+]
+},
+
+{
+title:"人間関係に強いストレスがありますか？",
+sub:"陰口、派閥、無視、強い口調などがあるかを見てください。",
+answers:[
+{text:"かなりある",score:10,tag:"人間関係"},
+{text:"少しある",score:7,tag:"人間関係"},
+{text:"多少ある",score:3,tag:"人間関係"},
+{text:"ほぼない",score:0,tag:"人間関係"}
+]
+},
+
+{
+title:"サービス残業はありますか？",
+sub:"記録、会議、委員会などを含めてください。",
+answers:[
+{text:"かなりある",score:10,tag:"サービス残業"},
+{text:"時々ある",score:7,tag:"サービス残業"},
+{text:"少しある",score:3,tag:"サービス残業"},
+{text:"ない",score:0,tag:"サービス残業"}
+]
+}
+
 ];
 
-let currentQuestion = 0;
-let totalScore = 0;
-let selectedTags = {};
-let latestResult = null;
+let currentQuestion=0;
+let totalScore=0;
+let selectedTags={};
+let latestResult=null;
 
 function startDiagnosis(){
-  document.getElementById("top").classList.add("hidden");
-  document.getElementById("quiz").classList.remove("hidden");
-  showQuestion();
-  window.scrollTo({top:0,behavior:"smooth"});
+
+document.getElementById("top").classList.add("hidden");
+document.getElementById("quiz").classList.remove("hidden");
+
+showQuestion();
+
 }
 
 function showQuestion(){
-  const q = questions[currentQuestion];
-  const progress = ((currentQuestion + 1) / questions.length) * 100;
 
-  document.getElementById("progressCount").textContent = `${currentQuestion + 1} / ${questions.length}`;
-  document.getElementById("progressPercent").textContent = `${Math.round(progress)}%`;
-  document.getElementById("progressFill").style.width = `${progress}%`;
-  document.getElementById("questionTitle").textContent = q.title;
-  document.getElementById("questionSub").textContent = q.sub;
+const q=questions[currentQuestion];
 
-  const answers = document.getElementById("answers");
-  answers.innerHTML = "";
+const progress=
+((currentQuestion+1)/questions.length)*100;
 
-  q.answers.forEach(answer=>{
-    const button = document.createElement("button");
-    button.className = "answer-button";
-    button.textContent = answer.text;
-    button.onclick = ()=>chooseAnswer(answer.score, answer.tag);
-    answers.appendChild(button);
-  });
+document.getElementById("progressCount").textContent=
+`${currentQuestion+1} / ${questions.length}`;
+
+document.getElementById("progressPercent").textContent=
+`${Math.round(progress)}%`;
+
+document.getElementById("progressFill").style.width=
+`${progress}%`;
+
+document.getElementById("questionTitle").textContent=
+q.title;
+
+document.getElementById("questionSub").textContent=
+q.sub;
+
+const answers=document.getElementById("answers");
+
+answers.innerHTML="";
+
+q.answers.forEach(answer=>{
+
+const button=document.createElement("button");
+
+button.className="answer-button";
+
+button.textContent=answer.text;
+
+button.onclick=()=>chooseAnswer(answer.score,answer.tag);
+
+answers.appendChild(button);
+
+});
+
 }
 
-function chooseAnswer(score, tag){
-  totalScore += score;
-  selectedTags[tag] = (selectedTags[tag] || 0) + score;
-  currentQuestion++;
+function chooseAnswer(score,tag){
 
-  if(currentQuestion < questions.length){
-    showQuestion();
-    window.scrollTo({top:0,behavior:"smooth"});
-  }else{
-    showResult();
-  }
+totalScore+=score;
+
+selectedTags[tag]=(selectedTags[tag]||0)+score;
+
+currentQuestion++;
+
+if(currentQuestion<questions.length){
+
+showQuestion();
+
+}else{
+
+showResult();
+
+}
+
 }
 
 function showResult(){
-  document.getElementById("quiz").classList.add("hidden");
-  document.getElementById("result").classList.remove("hidden");
 
-  const maxScore = 104;
-  const percent = Math.min(100, Math.round((totalScore / maxScore) * 100));
-  let deviation = Math.round(50 + (percent - 55) * 0.6);
-  deviation = Math.max(30, Math.min(80, deviation));
+document.getElementById("quiz").classList.add("hidden");
 
-  let color = "linear-gradient(135deg,#22c55e,#16a34a)";
-  let title = "ストレス低め。ただし油断は禁物";
-  let message = "現時点では深刻なストレス度は高くない可能性があります。ただし、介護現場は人員状況や管理者変更で一気に悪化することがあります。";
-  let danger = "低め";
-  let rank = "低ストレス層";
+document.getElementById("result").classList.remove("hidden");
 
-  if(deviation >= 70){
-    color = "linear-gradient(135deg,#ef4444,#991b1b)";
-    title = "限界危険ゾーン。逃げ道の確保を優先";
-    message = "かなり高いストレス状態の可能性があります。あなたの我慢や根性で解決する段階を超えているかもしれません。すぐ退職と決める必要はありませんが、相談先や選択肢を先に確保してください。";
-    danger = "限界危険";
-    rank = "上位約8%";
-  }else if(deviation >= 60){
-    color = "linear-gradient(135deg,#f97316,#c2410c)";
-    title = "かなり高ストレス。転職準備ライン";
-    message = "負担がかなり蓄積している可能性があります。続けるなら改善条件を明確にし、変わらない場合の選択肢を持つべきです。";
-    danger = "高ストレス";
-    rank = "上位約25%";
-  }else if(deviation >= 50){
-    color = "linear-gradient(135deg,#facc15,#ca8a04)";
-    title = "やや高め。比較対象を持つべき";
-    message = "すぐ危険とは言い切れませんが、不満や違和感が積み上がる前段階です。今の職場だけを基準にせず、他施設と比較してください。";
-    danger = "やや高め";
-    rank = "平均より上";
-  }else if(deviation >= 40){
-    title = "平均前後。特定項目には注意";
-    message = "全体としては平均前後のストレス状態です。ただし、特定の項目が高い場合は注意が必要です。";
-    danger = "平均前後";
-    rank = "平均圏内";
-  }
+const percent=
+Math.min(100,Math.round((totalScore/40)*100));
 
-  document.getElementById("scoreCircle").style.background = color;
-  document.getElementById("scoreNumber").textContent = percent;
-  document.getElementById("resultTitle").textContent = title;
-  document.getElementById("resultMessage").textContent = message;
-  document.getElementById("deviationText").textContent = deviation;
-  document.getElementById("totalText").textContent = totalScore + "点";
-  document.getElementById("dangerText").textContent = danger;
-  document.getElementById("rankText").textContent = rank;
+let deviation=
+Math.round(50+(percent-55)*0.6);
 
-  showRiskItems();
+document.getElementById("scoreNumber").textContent=
+percent;
 
-  latestResult = {
-    createdAt:new Date().toISOString(),
-    totalScore:totalScore,
-    percent:percent,
-    deviation:deviation,
-    dangerLevel:danger,
-    rankText:rank,
-    topFactors:Object.entries(selectedTags).sort((a,b)=>b[1]-a[1]).slice(0,3).map(x=>x[0]).join(", "),
-    selectedTags:JSON.stringify(selectedTags)
-  };
+document.getElementById("deviationText").textContent=
+deviation;
 
-  window.scrollTo({top:0,behavior:"smooth"});
+document.getElementById("totalText").textContent=
+totalScore+"点";
+
+document.getElementById("dangerText").textContent=
+deviation>=70?"危険":"注意";
+
+document.getElementById("rankText").textContent=
+deviation>=70?"上位10%":"平均圏";
+
+document.getElementById("resultTitle").textContent=
+deviation>=70
+?"限界危険ゾーン"
+:"ストレス高め";
+
+document.getElementById("resultMessage").textContent=
+"今の職場環境を客観視することが重要です。";
+
+latestResult={
+createdAt:new Date().toISOString(),
+totalScore,
+deviation,
+selectedTags:JSON.stringify(selectedTags)
+};
+
+showRiskItems();
+
 }
 
 function showRiskItems(){
-  const riskList = document.getElementById("riskList");
-  riskList.innerHTML = "";
 
-  const sorted = Object.entries(selectedTags).sort((a,b)=>b[1]-a[1]).slice(0,3);
+const riskList=
+document.getElementById("riskList");
 
-  const advice = {
-    "人手不足":"欠員が常態化している職場は、事故・疲弊・離職が連鎖しやすいです。",
-    "夜勤負担":"夜勤負担が強い場合、体調悪化と判断ミスのリスクが上がります。",
-    "人間関係":"人間関係の悪化は、給与以上に離職理由になりやすい重要項目です。",
-    "サービス残業":"無償労働が普通になっている場合、労務管理に問題がある可能性があります。",
-    "給与不満":"業務量と給与が見合わない状態が続くと、納得感が失われます。",
-    "シフト不満":"休みが取れない職場は、生活全体を削ってしまいます。",
-    "責任過多":"事故や急変対応を現場任せにする職場は、精神的負担が大きくなります。",
-    "教育不足":"教育不足は新人だけでなく、既存職員の負担増にもつながります。",
-    "心身不調":"体やメンタルに症状が出ている場合、最優先で休息と相談が必要です。",
-    "継続困難":"1年後が想像できない場合、心が限界を知らせている可能性があります。"
-  };
+riskList.innerHTML="";
 
-  sorted.forEach(([tag])=>{
-    const div = document.createElement("div");
-    div.className = "risk-item";
-    div.innerHTML = `<strong>${tag}</strong>${advice[tag] || "この項目は注意が必要です。"}`;
-    riskList.appendChild(div);
-  });
+Object.entries(selectedTags)
+.sort((a,b)=>b[1]-a[1])
+.slice(0,3)
+.forEach(([tag])=>{
+
+const div=document.createElement("div");
+
+div.className="risk-item";
+
+div.innerHTML=
+`<strong>${tag}</strong>負担が高い可能性があります。`;
+
+riskList.appendChild(div);
+
+});
+
 }
 
 function sendAnonymousData(){
-  if(!latestResult){
-    alert("先に診断してください");
-    return;
-  }
 
-  document.getElementById("sendStatus").textContent = "送信中です...";
+if(!latestResult)return;
 
-  fetch(API_URL,{
-    method:"POST",
-    mode:"no-cors",
-    body:JSON.stringify(latestResult)
-  })
-  .then(()=>{
-    document.getElementById("sendStatus").textContent =
-      "匿名で送信しました。介護士のリアルデータに参加ありがとうございます。";
-  })
-  .catch(()=>{
-    document.getElementById("sendStatus").textContent =
-      "送信に失敗しました。時間をおいて再度お試しください。";
-  });
+document.getElementById("sendStatus").textContent=
+"送信中...";
+
+fetch(API_URL,{
+method:"POST",
+mode:"no-cors",
+body:JSON.stringify(latestResult)
+})
+.then(()=>{
+
+document.getElementById("sendStatus").textContent=
+"匿名送信しました";
+
+})
+.catch(()=>{
+
+document.getElementById("sendStatus").textContent=
+"送信失敗";
+
+});
+
 }
 
 function restartDiagnosis(){
-  currentQuestion = 0;
-  totalScore = 0;
-  selectedTags = {};
-  latestResult = null;
 
-  document.getElementById("result").classList.add("hidden");
-  document.getElementById("top").classList.remove("hidden");
-  window.scrollTo({top:0,behavior:"smooth"});
+currentQuestion=0;
+totalScore=0;
+selectedTags={};
+latestResult=null;
+
+document.getElementById("result").classList.add("hidden");
+document.getElementById("top").classList.remove("hidden");
+
 }
+
 </script>
 
 </body>
