@@ -13,11 +13,7 @@ body{
   background:#fff5f1;
   color:#222;
 }
-.wrap{
-  max-width:430px;
-  margin:0 auto;
-  padding:18px;
-}
+.wrap{max-width:430px;margin:0 auto;padding:18px}
 .card{
   background:#fff;
   border-radius:22px;
@@ -34,18 +30,9 @@ body{
   font-size:13px;
   font-weight:800;
 }
-h1{
-  font-size:28px;
-  line-height:1.35;
-  color:#ef4444;
-}
-h2{
-  font-size:21px;
-}
-.lead{
-  font-size:15px;
-  line-height:1.8;
-}
+h1{font-size:28px;line-height:1.35;color:#ef4444}
+h2{font-size:21px}
+.lead{font-size:15px;line-height:1.8}
 .btn{
   width:100%;
   border:none;
@@ -61,29 +48,13 @@ h2{
   text-decoration:none;
   display:block;
 }
-.btn.secondary{
-  background:#fff;
-  color:#ef4444;
-  border:2px solid #ef4444;
-}
-.btn.line{
-  background:#06c755;
-}
-.btn.note{
-  background:#22c55e;
-}
-.btn.tiktok{
-  background:#111;
-}
-.checkBox{
-  margin-top:14px;
-  font-weight:800;
-}
-.hidden{display:none}
-.progressText{
-  font-weight:900;
-  margin-bottom:10px;
-}
+.btn.secondary{background:#fff;color:#ef4444;border:2px solid #ef4444}
+.btn.line{background:#06c755}
+.btn.note{background:#22c55e}
+.btn.tiktok{background:#111}
+.checkBox{margin-top:14px;font-weight:800}
+.hidden{display:none!important}
+.progressText{font-weight:900;margin-bottom:10px}
 .progressWrap{
   height:10px;
   background:#eee;
@@ -91,42 +62,24 @@ h2{
   overflow:hidden;
   margin-bottom:22px;
 }
-.progressBar{
-  height:100%;
-  background:#ef4444;
-  width:0%;
-}
-.qTitle{
-  font-size:22px;
-  font-weight:900;
-  margin:18px 0;
-}
+.progressBar{height:100%;background:#ef4444;width:0%}
+.qTitle{font-size:22px;font-weight:900;margin:18px 0}
 .option{
   display:block;
   border:1.5px solid #e5e7eb;
   border-radius:15px;
-  padding:15px;
-  margin:11px 0;
+  padding:16px;
+  margin:12px 0;
   font-weight:800;
   background:#fff;
   cursor:pointer;
 }
-.option.selected{
+.option:hover,.option.selected{
   border-color:#ef4444;
   background:#fff1f2;
   color:#ef4444;
 }
-.navBtns{
-  display:flex;
-  gap:10px;
-}
-.navBtns button{
-  flex:1;
-}
-.result{
-  display:none;
-  border:2px solid #ef4444;
-}
+.result{display:none;border:2px solid #ef4444}
 .score{
   font-size:60px;
   font-weight:1000;
@@ -157,35 +110,12 @@ h2{
   padding:16px;
   margin-top:16px;
 }
-.factorBox div{
-  font-weight:900;
-  margin:8px 0;
-}
-table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:12px;
-}
-th,td{
-  border:1px solid #ddd;
-  padding:7px;
-  vertical-align:top;
-}
-th{
-  background:#ef4444;
-  color:white;
-}
-.small{
-  font-size:12px;
-  color:#666;
-  line-height:1.7;
-}
-.footer{
-  text-align:center;
-  color:#999;
-  font-size:12px;
-  padding:24px 0;
-}
+.factorBox div{font-weight:900;margin:8px 0}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{border:1px solid #ddd;padding:7px;vertical-align:top}
+th{background:#ef4444;color:white}
+.small{font-size:12px;color:#666;line-height:1.7}
+.footer{text-align:center;color:#999;font-size:12px;padding:24px 0}
 </style>
 </head>
 
@@ -212,8 +142,7 @@ th{
   <button class="btn" onclick="startQuiz()">② 診断をはじめる</button>
 
   <p class="small">
-    ※外部APIを使っていないため、実際のフォロー確認はできません。  
-    TikTokフォロー後にチェックして診断へ進んでください。
+    ※フォロー後にチェックして診断へ進んでください。
   </p>
 </section>
 
@@ -225,11 +154,6 @@ th{
 
   <div class="qTitle" id="questionTitle"></div>
   <div id="options"></div>
-
-  <div class="navBtns">
-    <button class="btn secondary" onclick="prevQuestion()" id="prevBtn">戻る</button>
-    <button class="btn" onclick="nextQuestion()" id="nextBtn">次へ</button>
-  </div>
 </section>
 
 <section id="resultBox" class="card result"></section>
@@ -257,14 +181,14 @@ const questions = [
   ["給料に納得していない", [["納得している",1],["少し不満",2],["普通に不満",3],["かなり不満",4],["割に合わなすぎる",5]]],
   ["シフトの融通が利かない", [["問題ない",1],["少し不満",2],["普通に不満",3],["かなり不満",4],["生活に支障がある",5]]],
   ["上司・管理者に不信感がある", [["ない",1],["少しある",2],["普通にある",3],["かなりある",4],["信用できない",5]]],
-  ["記録・事務作業が負担", [["問題ない",1],["少し負担",2],["普通に負担",3],["かなり負担",4],["業務を圧迫している",5]]],
+  ["職場の雰囲気が悪い", [["まったく悪くない",1],["少し気になる",2],["普通に悪い",3],["かなり悪い",4],["毎日しんどい",5]]],
   ["腰痛・身体的疲労がある", [["ほぼない",1],["少しある",2],["普通にある",3],["かなりある",4],["限界に近い",5]]],
   ["辞めたいと思う頻度", [["ほぼない",1],["たまにある",2],["月に何度かある",3],["週に何度もある",4],["毎日のように思う",5]]]
 ];
 
 const labels = [
   "人手不足","夜勤負担","人間関係","サービス残業","休憩不足","入浴介助",
-  "給料不満","シフト不満","上司不信","記録負担","身体疲労","退職意向"
+  "給料不満","シフト不満","上司不信","職場雰囲気","身体疲労","退職意向"
 ];
 
 let current = 0;
@@ -275,7 +199,10 @@ function startQuiz(){
     alert("TikTokフォロー後にチェックを入れてください。");
     return;
   }
+
+  document.getElementById("top").classList.add("hidden");
   document.getElementById("quizCard").classList.remove("hidden");
+  document.getElementById("resultBox").style.display = "none";
   renderQuestion();
   document.getElementById("quizCard").scrollIntoView({behavior:"smooth"});
 }
@@ -289,30 +216,19 @@ function renderQuestion(){
 
   let html = "";
   q[1].forEach((opt,idx)=>{
-    const selected = answers[current] && answers[current].value === opt[1];
     html += `
-      <label class="option ${selected ? "selected" : ""}" onclick="selectAnswer(${idx})">
+      <div class="option" onclick="selectAnswer(${idx})">
         ${opt[0]}
-      </label>
+      </div>
     `;
   });
 
   document.getElementById("options").innerHTML = html;
-  document.getElementById("prevBtn").style.visibility = current === 0 ? "hidden" : "visible";
-  document.getElementById("nextBtn").textContent = current === questions.length - 1 ? "診断結果を見る" : "次へ";
 }
 
 function selectAnswer(idx){
   const opt = questions[current][1][idx];
   answers[current] = { text: opt[0], value: opt[1] };
-  renderQuestion();
-}
-
-function nextQuestion(){
-  if(!answers[current]){
-    alert("回答を選んでください。");
-    return;
-  }
 
   if(current < questions.length - 1){
     current++;
@@ -323,14 +239,9 @@ function nextQuestion(){
   }
 }
 
-function prevQuestion(){
-  if(current > 0){
-    current--;
-    renderQuestion();
-  }
-}
-
 function diagnose(){
+  document.getElementById("quizCard").classList.add("hidden");
+
   const total = answers.reduce((sum,a)=>sum + a.value,0);
   const deviation = Math.round(35 + ((total - 12) / 48) * 45);
 
@@ -375,16 +286,15 @@ function diagnose(){
 
     <h2>次にやること</h2>
     <p class="lead">
-      今すぐ転職しなくても大丈夫です。  
-      ただし、今の職場が普通なのか、他の介護職場と比較してください。
+      今の職場が本当に普通なのか、他の介護職場と比較してみてください。
     </p>
 
-    <a class="btn note" href="http://note.com/kaigo_tensyoku" target="_blank">
+    <a class="btn note" href="https://note.com/kaigo_tenshoku" target="_blank">
       noteで詳しく読む
     </a>
 
     <a class="btn line" href="https://lin.ee/Rxbphei" target="_blank">
-      LINEで無料相談する
+      LINEで相談する
     </a>
 
     <button class="btn secondary" onclick="restartQuiz()">
@@ -407,47 +317,49 @@ function restartQuiz(){
   current = 0;
   answers = Array(questions.length).fill(null);
   document.getElementById("resultBox").style.display = "none";
-  renderQuestion();
-  document.getElementById("quizCard").scrollIntoView({behavior:"smooth"});
+  document.getElementById("top").classList.remove("hidden");
+  document.getElementById("top").scrollIntoView({behavior:"smooth"});
 }
 
-async function loadResults(){
-  try{
-    const res = await fetch(API_URL + "?mode=list");
-    const data = await res.json();
+function loadResults(){
+  const old = document.getElementById("jsonpScript");
+  if(old) old.remove();
 
-    if(!data || data.length === 0){
-      document.getElementById("resultList").innerHTML = "まだ診断結果がありません。";
-      return;
-    }
+  const script = document.createElement("script");
+  script.id = "jsonpScript";
+  script.src = API_URL + "?mode=list&callback=renderResults";
+  document.body.appendChild(script);
+}
 
-    let html = `
-      <table>
-        <tr>
-          <th>日時</th>
-          <th>点数</th>
-          <th>偏差値</th>
-          <th>TOP3</th>
-        </tr>
-    `;
-
-    data.forEach(item=>{
-      html += `
-        <tr>
-          <td>${formatDate(item.date)}</td>
-          <td>${item.score}</td>
-          <td>${item.deviation}</td>
-          <td>${formatTags(item.tags)}</td>
-        </tr>
-      `;
-    });
-
-    html += `</table>`;
-    document.getElementById("resultList").innerHTML = html;
-
-  }catch(e){
-    document.getElementById("resultList").innerHTML = "診断結果を読み込めませんでした。";
+function renderResults(data){
+  if(!data || data.length === 0){
+    document.getElementById("resultList").innerHTML = "まだ診断結果がありません。";
+    return;
   }
+
+  let html = `
+    <table>
+      <tr>
+        <th>日時</th>
+        <th>点数</th>
+        <th>偏差値</th>
+        <th>TOP3</th>
+      </tr>
+  `;
+
+  data.forEach(item=>{
+    html += `
+      <tr>
+        <td>${formatDate(item.date)}</td>
+        <td>${item.score}</td>
+        <td>${item.deviation}</td>
+        <td>${formatTags(item.tags)}</td>
+      </tr>
+    `;
+  });
+
+  html += `</table>`;
+  document.getElementById("resultList").innerHTML = html;
 }
 
 function formatDate(date){
