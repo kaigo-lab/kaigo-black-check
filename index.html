@@ -3,211 +3,414 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>介護士ストレス偏差値診断</title>
 
 <style>
-
 body{
-    font-family:sans-serif;
-    background:#f5f5f5;
-    padding:20px;
-    line-height:1.8;
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  background:#f3f4f6;
+  color:#111;
 }
-
 .container{
-    max-width:800px;
-    margin:auto;
-    background:white;
-    padding:20px;
-    border-radius:12px;
+  max-width:760px;
+  margin:0 auto;
+  padding:18px;
 }
-
+.card{
+  background:#fff;
+  border-radius:18px;
+  padding:22px;
+  margin:18px 0;
+  box-shadow:0 6px 20px rgba(0,0,0,.08);
+}
 h1{
-    text-align:center;
+  font-size:28px;
+  line-height:1.35;
+  text-align:center;
+  margin:14px 0;
 }
-
+.lead{
+  text-align:center;
+  color:#555;
+  font-weight:bold;
+}
+.badge{
+  display:inline-block;
+  background:#111;
+  color:#fff;
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:13px;
+}
 .question{
-    margin-bottom:25px;
-    padding:15px;
-    background:#fafafa;
-    border-radius:10px;
+  padding:16px;
+  border-radius:14px;
+  background:#f9fafb;
+  margin:14px 0;
 }
-
+.question p{
+  font-weight:bold;
+  margin:0 0 10px;
+}
+label{
+  display:block;
+  padding:9px 0;
+}
 button{
-    width:100%;
-    padding:15px;
-    font-size:18px;
-    border:none;
-    border-radius:10px;
-    background:#222;
-    color:white;
-    margin-top:20px;
-    cursor:pointer;
+  width:100%;
+  border:none;
+  border-radius:14px;
+  padding:17px;
+  font-size:18px;
+  font-weight:bold;
+  background:#111;
+  color:#fff;
+  margin-top:16px;
+  cursor:pointer;
 }
-
 .result{
-    margin-top:30px;
-    padding:20px;
-    background:#fff8e1;
-    border-radius:12px;
+  display:none;
+  background:#fff7ed;
+  border:2px solid #fb923c;
 }
-
+.score{
+  font-size:46px;
+  font-weight:900;
+  text-align:center;
+}
+.rank{
+  font-size:26px;
+  font-weight:900;
+  text-align:center;
+  color:#dc2626;
+}
+.comment{
+  background:#fff;
+  padding:16px;
+  border-radius:14px;
+  margin-top:14px;
+  line-height:1.8;
+}
+.cta{
+  background:#ecfeff;
+  border:2px solid #06b6d4;
+}
+.share{
+  background:#fef3c7;
+}
 table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:20px;
-    background:white;
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
+  background:#fff;
 }
-
-th, td{
-    border:1px solid #ddd;
-    padding:10px;
-    font-size:14px;
+th,td{
+  border:1px solid #ddd;
+  padding:8px;
+  vertical-align:top;
 }
-
 th{
-    background:#222;
-    color:white;
+  background:#111;
+  color:#fff;
 }
-
+.small{
+  font-size:13px;
+  color:#666;
+}
+.footer{
+  text-align:center;
+  color:#777;
+  font-size:12px;
+  padding:20px;
+}
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
-<h1>介護士ストレス偏差値診断</h1>
+<div class="card">
+  <p class="lead"><span class="badge">介護士専用</span></p>
+  <h1>職場ストレス<br>偏差値診断</h1>
+  <p class="lead">
+    あなたの職場が「普通」なのか、<br>
+    それとも危険ラインなのかを診断します。
+  </p>
+</div>
+
+<form id="quizForm" class="card">
 
 <div class="question">
-<p>1. 人手不足を感じますか？</p>
-
-<label><input type="radio" name="q1" value="4"> 常に感じる</label><br>
-<label><input type="radio" name="q1" value="3"> 時々感じる</label><br>
+<p>1. 人手不足を感じる</p>
+<label><input type="radio" name="q1" value="5"> ほぼ毎日感じる</label>
+<label><input type="radio" name="q1" value="3"> ときどき感じる</label>
 <label><input type="radio" name="q1" value="1"> あまり感じない</label>
 </div>
 
 <div class="question">
-<p>2. 夜勤負担は大きいですか？</p>
-
-<label><input type="radio" name="q2" value="4"> 非常にきつい</label><br>
-<label><input type="radio" name="q2" value="3"> ややきつい</label><br>
+<p>2. 夜勤の負担が重い</p>
+<label><input type="radio" name="q2" value="5"> かなり重い</label>
+<label><input type="radio" name="q2" value="3"> 普通にきつい</label>
 <label><input type="radio" name="q2" value="1"> 問題ない</label>
 </div>
 
 <div class="question">
-<p>3. 人間関係のストレスは？</p>
-
-<label><input type="radio" name="q3" value="4"> 強い</label><br>
-<label><input type="radio" name="q3" value="3"> 少しある</label><br>
-<label><input type="radio" name="q3" value="1"> 少ない</label>
+<p>3. 人間関係で消耗している</p>
+<label><input type="radio" name="q3" value="5"> かなり消耗している</label>
+<label><input type="radio" name="q3" value="3"> 少しある</label>
+<label><input type="radio" name="q3" value="1"> ほぼない</label>
 </div>
 
-<button onclick="diagnose()">
-診断する
-</button>
+<div class="question">
+<p>4. サービス残業がある</p>
+<label><input type="radio" name="q4" value="5"> よくある</label>
+<label><input type="radio" name="q4" value="3"> たまにある</label>
+<label><input type="radio" name="q4" value="1"> ほぼない</label>
+</div>
 
-<div id="result" class="result"></div>
+<div class="question">
+<p>5. 休憩がしっかり取れない</p>
+<label><input type="radio" name="q5" value="5"> 取れない日が多い</label>
+<label><input type="radio" name="q5" value="3"> 取れない日もある</label>
+<label><input type="radio" name="q5" value="1"> 取れている</label>
+</div>
 
+<div class="question">
+<p>6. 入浴介助がきつい</p>
+<label><input type="radio" name="q6" value="5"> かなりきつい</label>
+<label><input type="radio" name="q6" value="3"> 普通にきつい</label>
+<label><input type="radio" name="q6" value="1"> 許容範囲</label>
+</div>
+
+<div class="question">
+<p>7. 給料に納得していない</p>
+<label><input type="radio" name="q7" value="5"> 全く納得していない</label>
+<label><input type="radio" name="q7" value="3"> 少し不満</label>
+<label><input type="radio" name="q7" value="1"> 納得している</label>
+</div>
+
+<div class="question">
+<p>8. シフトの融通が利かない</p>
+<label><input type="radio" name="q8" value="5"> かなり利かない</label>
+<label><input type="radio" name="q8" value="3"> 少し不満</label>
+<label><input type="radio" name="q8" value="1"> 問題ない</label>
+</div>
+
+<div class="question">
+<p>9. 管理者・上司に不信感がある</p>
+<label><input type="radio" name="q9" value="5"> 強くある</label>
+<label><input type="radio" name="q9" value="3"> 少しある</label>
+<label><input type="radio" name="q9" value="1"> ほぼない</label>
+</div>
+
+<div class="question">
+<p>10. 記録・事務作業が負担</p>
+<label><input type="radio" name="q10" value="5"> かなり負担</label>
+<label><input type="radio" name="q10" value="3"> 少し負担</label>
+<label><input type="radio" name="q10" value="1"> 問題ない</label>
+</div>
+
+<div class="question">
+<p>11. 腰痛・身体的疲労がある</p>
+<label><input type="radio" name="q11" value="5"> かなりある</label>
+<label><input type="radio" name="q11" value="3"> 少しある</label>
+<label><input type="radio" name="q11" value="1"> ほぼない</label>
+</div>
+
+<div class="question">
+<p>12. 「辞めたい」と思う頻度</p>
+<label><input type="radio" name="q12" value="5"> かなり頻繁に思う</label>
+<label><input type="radio" name="q12" value="3"> たまに思う</label>
+<label><input type="radio" name="q12" value="1"> あまり思わない</label>
+</div>
+
+<button type="button" onclick="diagnose()">診断する</button>
+</form>
+
+<div id="resultBox" class="card result"></div>
+
+<div class="card share">
+<h2>結果をコメントしてみよう</h2>
+<p>
+TikTokのコメント欄に<br>
+<strong>「偏差値○○だった」</strong><br>
+と書くと、他の介護士さんと比較できます。
+</p>
+</div>
+
+<div class="card cta">
+<h2>職場が危険ラインだった人へ</h2>
+<p>
+今すぐ転職しなくても大丈夫です。<br>
+ただし、今の職場が普通なのかだけは知っておいた方がいいです。
+</p>
+<p class="small">
+※ここにTikTok・LINE・note・求人相談ページのリンクを後で入れます。
+</p>
+</div>
+
+<div class="card">
 <h2>みんなの診断結果</h2>
+<p class="small">最新50件を自動表示します。</p>
+<div id="resultList">読み込み中...</div>
+</div>
 
-<div id="resultList"></div>
+<div class="footer">
+介護士ストレス偏差値診断
+</div>
 
 </div>
 
 <script>
-
 const API_URL = "https://script.google.com/macros/s/AKfycby-6C8AOE-KpoM5H6JXG8gn4kW64kY6oAeInCg22mWxdHIg2vv1sQe-QGhLxpTjtnR9QA/exec";
+
+const labels = [
+  "人手不足",
+  "夜勤負担",
+  "人間関係",
+  "サービス残業",
+  "休憩不足",
+  "入浴介助",
+  "給料不満",
+  "シフト不満",
+  "上司不信",
+  "記録負担",
+  "身体疲労",
+  "退職意向"
+];
 
 async function diagnose(){
 
-    let total = 0;
+  let total = 0;
+  let tags = {};
+  let unanswered = [];
 
-    const q1 = document.querySelector('input[name="q1"]:checked');
-    const q2 = document.querySelector('input[name="q2"]:checked');
-    const q3 = document.querySelector('input[name="q3"]:checked');
-
-    if(!q1 || !q2 || !q3){
-        alert("すべて回答してください");
-        return;
-    }
-
-    total += Number(q1.value);
-    total += Number(q2.value);
-    total += Number(q3.value);
-
-    const deviation = Math.min(80, Math.max(30, total * 6));
-
-    let danger = "";
-
-    if(deviation >= 70){
-        danger = "かなり危険";
-    }else if(deviation >= 55){
-        danger = "注意";
+  for(let i=1; i<=12; i++){
+    const checked = document.querySelector(`input[name="q${i}"]:checked`);
+    if(!checked){
+      unanswered.push(i);
     }else{
-        danger = "比較的安全";
+      const value = Number(checked.value);
+      total += value;
+      tags[labels[i-1]] = value;
     }
+  }
 
-    const tags = {
-        "人手不足": q1.value,
-        "夜勤負担": q2.value,
-        "人間関係": q3.value
-    };
+  if(unanswered.length > 0){
+    alert("未回答があります。すべて回答してください。");
+    return;
+  }
 
-    document.getElementById("result").innerHTML = `
-        <h2>診断結果</h2>
-        <p>ストレス偏差値：${deviation}</p>
-        <p>判定：${danger}</p>
-    `;
+  const deviation = Math.round(35 + ((total - 12) / 48) * 45);
 
-    // GAS保存
-    fetch(
-        API_URL
-        + "?totalScore=" + total
-        + "&deviation=" + deviation
-        + "&selectedTags=" + encodeURIComponent(JSON.stringify(tags))
-    );
+  let rank = "";
+  let comment = "";
 
-    // 一覧更新
-    loadResults();
+  if(deviation >= 72){
+    rank = "危険ライン";
+    comment = "かなり危険です。あなたの我慢不足ではなく、職場環境そのものに問題がある可能性が高いです。すぐ辞めるかは別として、他の職場条件との比較は始めた方がいいです。";
+  }else if(deviation >= 62){
+    rank = "要注意";
+    comment = "普通に見えて、かなり消耗している状態です。このまま慣れてしまうと、判断力が落ちて抜け出しにくくなります。";
+  }else if(deviation >= 52){
+    rank = "ややストレス高め";
+    comment = "今すぐ危険とは言い切れませんが、不満が積み上がりやすい状態です。給料・夜勤・人間関係のどれが原因か整理しましょう。";
+  }else{
+    rank = "比較的安定";
+    comment = "現時点では大きな危険ラインではありません。ただし介護職は急に負担が増えるので、定期的に見直すのがおすすめです。";
+  }
+
+  const topFactors = Object.entries(tags)
+    .sort((a,b)=>b[1]-a[1])
+    .slice(0,3)
+    .map(x=>x[0]);
+
+  document.getElementById("resultBox").style.display = "block";
+  document.getElementById("resultBox").innerHTML = `
+    <h2>診断結果</h2>
+    <div class="score">偏差値 ${deviation}</div>
+    <div class="rank">${rank}</div>
+    <div class="comment">
+      <p><strong>主なストレス要因</strong></p>
+      <p>${topFactors.join("・")}</p>
+      <p>${comment}</p>
+    </div>
+  `;
+
+  fetch(
+    API_URL
+    + "?totalScore=" + encodeURIComponent(total)
+    + "&deviation=" + encodeURIComponent(deviation)
+    + "&selectedTags=" + encodeURIComponent(JSON.stringify(tags))
+  );
+
+  setTimeout(loadResults, 1000);
+
+  document.getElementById("resultBox").scrollIntoView({
+    behavior:"smooth"
+  });
 }
 
 async function loadResults(){
-
+  try{
     const res = await fetch(API_URL + "?mode=list");
-
     const data = await res.json();
 
+    if(!data || data.length === 0){
+      document.getElementById("resultList").innerHTML = "まだ診断結果がありません。";
+      return;
+    }
+
     let html = `
-    <table>
+      <table>
         <tr>
-            <th>日時</th>
-            <th>スコア</th>
-            <th>偏差値</th>
-            <th>悩み</th>
+          <th>日時</th>
+          <th>点数</th>
+          <th>偏差値</th>
+          <th>悩み</th>
         </tr>
     `;
 
-    data.forEach(item => {
-
-        html += `
+    data.forEach(item=>{
+      html += `
         <tr>
-            <td>${item.date}</td>
-            <td>${item.score}</td>
-            <td>${item.deviation}</td>
-            <td>${item.tags}</td>
+          <td>${formatDate(item.date)}</td>
+          <td>${item.score}</td>
+          <td>${item.deviation}</td>
+          <td>${formatTags(item.tags)}</td>
         </tr>
-        `;
+      `;
     });
 
     html += `</table>`;
-
     document.getElementById("resultList").innerHTML = html;
+
+  }catch(e){
+    document.getElementById("resultList").innerHTML = "診断結果を読み込めませんでした。";
+  }
+}
+
+function formatDate(date){
+  if(!date) return "";
+  return String(date).replace("T"," ").slice(0,16);
+}
+
+function formatTags(tags){
+  if(!tags) return "";
+  try{
+    const obj = typeof tags === "string" ? JSON.parse(tags) : tags;
+    return Object.entries(obj)
+      .sort((a,b)=>b[1]-a[1])
+      .slice(0,3)
+      .map(x=>x[0])
+      .join("・");
+  }catch(e){
+    return String(tags);
+  }
 }
 
 loadResults();
-
 </script>
 
 </body>
