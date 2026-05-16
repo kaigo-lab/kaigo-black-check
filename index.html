@@ -74,7 +74,7 @@ h2{font-size:21px}
   background:#fff;
   cursor:pointer;
 }
-.option:hover,.option.selected{
+.option:hover{
   border-color:#ef4444;
   background:#fff1f2;
   color:#ef4444;
@@ -141,9 +141,7 @@ th{background:#ef4444;color:white}
 
   <button class="btn" onclick="startQuiz()">② 診断をはじめる</button>
 
-  <p class="small">
-    ※フォロー後にチェックして診断へ進んでください。
-  </p>
+  <p class="small">※フォロー後にチェックして診断へ進んでください。</p>
 </section>
 
 <section class="card hidden" id="quizCard">
@@ -151,7 +149,6 @@ th{background:#ef4444;color:white}
   <div class="progressWrap">
     <div class="progressBar" id="progressBar"></div>
   </div>
-
   <div class="qTitle" id="questionTitle"></div>
   <div id="options"></div>
 </section>
@@ -186,10 +183,7 @@ const questions = [
   ["辞めたいと思う頻度", [["ほぼない",1],["たまにある",2],["月に何度かある",3],["週に何度もある",4],["毎日のように思う",5]]]
 ];
 
-const labels = [
-  "人手不足","夜勤負担","人間関係","サービス残業","休憩不足","入浴介助",
-  "給料不満","シフト不満","上司不信","職場雰囲気","身体疲労","退職意向"
-];
+const labels = ["人手不足","夜勤負担","人間関係","サービス残業","休憩不足","入浴介助","給料不満","シフト不満","上司不信","職場雰囲気","身体疲労","退職意向"];
 
 let current = 0;
 let answers = Array(questions.length).fill(null);
@@ -199,7 +193,6 @@ function startQuiz(){
     alert("TikTokフォロー後にチェックを入れてください。");
     return;
   }
-
   document.getElementById("top").classList.add("hidden");
   document.getElementById("quizCard").classList.remove("hidden");
   document.getElementById("resultBox").style.display = "none";
@@ -209,20 +202,14 @@ function startQuiz(){
 
 function renderQuestion(){
   const q = questions[current];
-
   document.getElementById("progressText").textContent = `質問 ${current + 1} / ${questions.length}`;
   document.getElementById("progressBar").style.width = `${((current + 1) / questions.length) * 100}%`;
   document.getElementById("questionTitle").textContent = `${current + 1}. ${q[0]}`;
 
   let html = "";
   q[1].forEach((opt,idx)=>{
-    html += `
-      <div class="option" onclick="selectAnswer(${idx})">
-        ${opt[0]}
-      </div>
-    `;
+    html += `<div class="option" onclick="selectAnswer(${idx})">${opt[0]}</div>`;
   });
-
   document.getElementById("options").innerHTML = html;
 }
 
@@ -285,32 +272,27 @@ function diagnose(){
     </div>
 
     <h2>次にやること</h2>
-    <p class="lead">
-      今の職場が本当に普通なのか、他の介護職場と比較してみてください。
-    </p>
+    <p class="lead">今の職場が本当に普通なのか、他の介護職場と比較してみてください。</p>
 
-    <a class="btn note" href="https://note.com/kaigo_tenshoku" target="_blank">
-      noteで詳しく読む
-    </a>
-
-    <a class="btn line" href="https://lin.ee/Rxbphei" target="_blank">
-      LINEで相談する
-    </a>
-
-    <button class="btn secondary" onclick="restartQuiz()">
-      もう一度診断する
-    </button>
+    <a class="btn note" href="https://note.com/kaigo_tenshoku" target="_blank">noteで詳しく読む</a>
+    <a class="btn line" href="https://lin.ee/Rxbphei" target="_blank">LINEで相談する</a>
+    <button class="btn secondary" onclick="restartQuiz()">もう一度診断する</button>
   `;
 
-  fetch(
+  saveResult(total, deviation, tags);
+
+  setTimeout(loadResults,1500);
+  document.getElementById("resultBox").scrollIntoView({behavior:"smooth"});
+}
+
+function saveResult(total, deviation, tags){
+  const img = new Image();
+  img.src =
     API_URL
     + "?totalScore=" + encodeURIComponent(total)
     + "&deviation=" + encodeURIComponent(deviation)
     + "&selectedTags=" + encodeURIComponent(JSON.stringify(tags))
-  );
-
-  setTimeout(loadResults,1000);
-  document.getElementById("resultBox").scrollIntoView({behavior:"smooth"});
+    + "&t=" + Date.now();
 }
 
 function restartQuiz(){
@@ -327,7 +309,7 @@ function loadResults(){
 
   const script = document.createElement("script");
   script.id = "jsonpScript";
-  script.src = API_URL + "?mode=list&callback=renderResults";
+  script.src = API_URL + "?mode=list&callback=renderResults&t=" + Date.now();
   document.body.appendChild(script);
 }
 
