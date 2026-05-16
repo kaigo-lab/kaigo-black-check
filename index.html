@@ -9,137 +9,163 @@
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
-  background:#f3f4f6;
-  color:#111;
+  background:#fff5f1;
+  color:#222;
 }
-.container{
-  max-width:760px;
+.wrap{
+  max-width:430px;
   margin:0 auto;
   padding:18px;
 }
 .card{
   background:#fff;
   border-radius:18px;
-  padding:22px;
-  margin:18px 0;
-  box-shadow:0 6px 20px rgba(0,0,0,.08);
+  padding:24px;
+  margin:16px 0;
+  box-shadow:0 8px 24px rgba(0,0,0,.08);
+}
+.badge{
+  display:inline-block;
+  background:#ffe4e6;
+  color:#ef4444;
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:700;
 }
 h1{
   font-size:28px;
   line-height:1.35;
-  text-align:center;
+  color:#ef4444;
   margin:14px 0;
 }
-.lead{
-  text-align:center;
-  color:#555;
-  font-weight:bold;
+h2{
+  font-size:20px;
+  margin-top:0;
 }
-.badge{
-  display:inline-block;
-  background:#111;
-  color:#fff;
-  padding:6px 12px;
+.lead{
+  font-size:15px;
+  line-height:1.8;
+}
+.startBtn,.mainBtn{
+  width:100%;
+  border:none;
   border-radius:999px;
-  font-size:13px;
+  padding:17px;
+  font-size:17px;
+  font-weight:800;
+  background:#ef4444;
+  color:#fff;
+  margin-top:14px;
+  cursor:pointer;
 }
 .question{
-  padding:16px;
-  border-radius:14px;
-  background:#f9fafb;
+  background:#fafafa;
+  border-radius:16px;
+  padding:18px;
   margin:14px 0;
 }
 .question p{
-  font-weight:bold;
   margin:0 0 10px;
+  font-weight:800;
 }
 label{
   display:block;
   padding:9px 0;
-}
-button{
-  width:100%;
-  border:none;
-  border-radius:14px;
-  padding:17px;
-  font-size:18px;
-  font-weight:bold;
-  background:#111;
-  color:#fff;
-  margin-top:16px;
-  cursor:pointer;
+  font-size:15px;
 }
 .result{
   display:none;
-  background:#fff7ed;
-  border:2px solid #fb923c;
+  border:2px solid #ef4444;
 }
 .score{
-  font-size:46px;
+  font-size:44px;
   font-weight:900;
   text-align:center;
+  color:#ef4444;
 }
 .rank{
-  font-size:26px;
+  font-size:24px;
   font-weight:900;
   text-align:center;
-  color:#dc2626;
 }
 .comment{
-  background:#fff;
+  background:#fff7ed;
   padding:16px;
   border-radius:14px;
-  margin-top:14px;
   line-height:1.8;
+  margin-top:14px;
 }
-.cta{
-  background:#ecfeff;
-  border:2px solid #06b6d4;
-}
-.share{
-  background:#fef3c7;
+.logic ul{
+  padding-left:20px;
+  line-height:1.9;
 }
 table{
   width:100%;
   border-collapse:collapse;
-  font-size:13px;
-  background:#fff;
+  font-size:12px;
 }
 th,td{
   border:1px solid #ddd;
-  padding:8px;
+  padding:7px;
   vertical-align:top;
 }
 th{
-  background:#111;
-  color:#fff;
+  background:#ef4444;
+  color:white;
 }
 .small{
-  font-size:13px;
+  font-size:12px;
   color:#666;
+  line-height:1.7;
 }
 .footer{
   text-align:center;
-  color:#777;
   font-size:12px;
-  padding:20px;
+  color:#999;
+  padding:24px 0;
 }
 </style>
 </head>
 
 <body>
-<div class="container">
 
-<div class="card">
-  <p class="lead"><span class="badge">介護士専用</span></p>
-  <h1>職場ストレス<br>偏差値診断</h1>
+<div class="wrap">
+
+<section class="card">
+  <span class="badge">介護士向け・無料診断</span>
+  <h1>介護士ストレス偏差値診断<br>「今の職場、危険ラインじゃない？」</h1>
   <p class="lead">
-    あなたの職場が「普通」なのか、<br>
-    それとも危険ラインなのかを診断します。
+    人手不足・夜勤・人間関係・給料不満などから、  
+    あなたの職場ストレスを見える化します。
   </p>
-</div>
+  <button class="startBtn" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">
+    診断をはじめる
+  </button>
+</section>
 
-<form id="quizForm" class="card">
+<section class="card logic">
+  <h2>診断ロジックについて</h2>
+  <p class="lead">
+    この診断は、介護士が職場で感じやすいストレス要因をもとにした簡易診断です。
+  </p>
+  <ul>
+    <li>人手不足</li>
+    <li>夜勤負担</li>
+    <li>人間関係</li>
+    <li>サービス残業</li>
+    <li>休憩不足</li>
+    <li>入浴介助</li>
+    <li>給料不満</li>
+    <li>退職意向</li>
+  </ul>
+  <p class="small">
+    ※医療・労務・法律上の正式な判定ではありません。  
+    自分の職場を見直すきっかけとして使ってください。
+  </p>
+</section>
+
+<form id="quiz" class="card">
 
 <div class="question">
 <p>1. 人手不足を感じる</p>
@@ -225,40 +251,39 @@ th{
 <label><input type="radio" name="q12" value="1"> あまり思わない</label>
 </div>
 
-<button type="button" onclick="diagnose()">診断する</button>
+<button type="button" class="mainBtn" onclick="diagnose()">診断する</button>
+
 </form>
 
-<div id="resultBox" class="card result"></div>
+<section id="resultBox" class="card result"></section>
 
-<div class="card share">
-<h2>結果をコメントしてみよう</h2>
-<p>
-TikTokのコメント欄に<br>
-<strong>「偏差値○○だった」</strong><br>
-と書くと、他の介護士さんと比較できます。
-</p>
-</div>
+<section class="card">
+  <h2>結果をコメントしてみよう</h2>
+  <p class="lead">
+    TikTokのコメント欄に<br>
+    <strong>「偏差値○○だった」</strong><br>
+    と書くと、他の介護士さんと比較できます。
+  </p>
+</section>
 
-<div class="card cta">
-<h2>職場が危険ラインだった人へ</h2>
-<p>
-今すぐ転職しなくても大丈夫です。<br>
-ただし、今の職場が普通なのかだけは知っておいた方がいいです。
-</p>
-<p class="small">
-※ここにTikTok・LINE・note・求人相談ページのリンクを後で入れます。
-</p>
-</div>
+<section class="card">
+  <h2>職場が危険ラインだった人へ</h2>
+  <p class="lead">
+    今すぐ転職しなくても大丈夫です。  
+    ただし、今の職場が普通なのかだけは知っておいた方がいいです。
+  </p>
+  <p class="small">
+    ※ここにTikTok・LINE・note・求人相談ページのリンクを後で入れます。
+  </p>
+</section>
 
-<div class="card">
-<h2>みんなの診断結果</h2>
-<p class="small">最新50件を自動表示します。</p>
-<div id="resultList">読み込み中...</div>
-</div>
+<section class="card">
+  <h2>みんなの診断結果</h2>
+  <p class="small">最新50件を自動表示します。</p>
+  <div id="resultList">読み込み中...</div>
+</section>
 
-<div class="footer">
-介護士ストレス偏差値診断
-</div>
+<div class="footer">介護士ストレス偏差値診断</div>
 
 </div>
 
@@ -281,7 +306,6 @@ const labels = [
 ];
 
 async function diagnose(){
-
   let total = 0;
   let tags = {};
   let unanswered = [];
@@ -347,9 +371,7 @@ async function diagnose(){
 
   setTimeout(loadResults, 1000);
 
-  document.getElementById("resultBox").scrollIntoView({
-    behavior:"smooth"
-  });
+  document.getElementById("resultBox").scrollIntoView({behavior:"smooth"});
 }
 
 async function loadResults(){
