@@ -3,368 +3,341 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>介護士ストレス偏差値診断</title>
-
+<title>介護士ストレス偏差値診断｜今の職場、危険ライン？</title>
 <style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
-  background:#fff5f1;
-  color:#222;
-}
-.wrap{max-width:430px;margin:0 auto;padding:18px}
-.card{
-  background:#fff;
-  border-radius:22px;
-  padding:24px;
-  margin:16px 0;
-  box-shadow:0 8px 26px rgba(0,0,0,.08);
-}
-.badge{
-  display:inline-block;
-  background:#ffe4e6;
-  color:#ef4444;
-  padding:7px 13px;
-  border-radius:999px;
-  font-size:13px;
-  font-weight:800;
-}
-h1{font-size:28px;line-height:1.35;color:#ef4444}
-h2{font-size:21px}
-.lead{font-size:15px;line-height:1.8}
-.btn{
-  width:100%;
-  border:none;
-  border-radius:999px;
-  padding:17px;
-  font-size:17px;
-  font-weight:900;
-  background:#ef4444;
-  color:#fff;
-  margin-top:14px;
-  cursor:pointer;
-  text-align:center;
-  text-decoration:none;
-  display:block;
-}
-.btn.secondary{background:#fff;color:#ef4444;border:2px solid #ef4444}
-.btn.line{background:#06c755}
-.btn.note{background:#22c55e}
-.btn.tiktok{background:#111}
-.checkBox{margin-top:14px;font-weight:800}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hiragino Sans','Noto Sans JP',sans-serif;background:#0f0f0f;color:#f0f0f0;min-height:100vh}
 .hidden{display:none!important}
-.progressText{font-weight:900;margin-bottom:10px}
-.progressWrap{
-  height:10px;
-  background:#eee;
-  border-radius:999px;
-  overflow:hidden;
-  margin-bottom:22px;
-}
-.progressBar{height:100%;background:#ef4444;width:0%}
-.qTitle{font-size:22px;font-weight:900;margin:18px 0}
-.option{
-  display:block;
-  border:1.5px solid #e5e7eb;
-  border-radius:15px;
-  padding:16px;
-  margin:12px 0;
-  font-weight:800;
-  background:#fff;
-  cursor:pointer;
-}
-.option:hover{
-  border-color:#ef4444;
-  background:#fff1f2;
-  color:#ef4444;
-}
-.result{display:none;border:2px solid #ef4444}
-.score{
-  font-size:60px;
-  font-weight:1000;
-  text-align:center;
-  color:#ef4444;
-  line-height:1;
-}
-.rank{
-  text-align:center;
-  display:block;
-  margin:14px auto;
-  background:#ffe4e6;
-  color:#ef4444;
-  padding:10px 18px;
-  border-radius:999px;
-  font-weight:900;
-  width:max-content;
-}
-.comment{
-  background:#fff7ed;
-  padding:16px;
-  border-radius:16px;
-  line-height:1.8;
-}
-.factorBox{
-  border:2px solid #fecaca;
-  border-radius:16px;
-  padding:16px;
-  margin-top:16px;
-}
-.factorBox div{font-weight:900;margin:8px 0}
-table{width:100%;border-collapse:collapse;font-size:12px}
-th,td{border:1px solid #ddd;padding:7px;vertical-align:top}
-th{background:#ef4444;color:white}
-.small{font-size:12px;color:#666;line-height:1.7}
-.footer{text-align:center;color:#999;font-size:12px;padding:24px 0}
+.screen{display:none;min-height:100vh;flex-direction:column}
+.screen.active{display:flex}
+
+/* INTRO */
+#s-intro{align-items:center;justify-content:center;text-align:center;padding:40px 24px;position:relative;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.12;pointer-events:none}
+.orb1{width:400px;height:400px;background:#ef4444;top:-150px;right:-150px}
+.orb2{width:300px;height:300px;background:#f97316;bottom:-100px;left:-100px}
+.intro-inner{position:relative;z-index:1;max-width:340px}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:2px;color:#ef4444;margin-bottom:18px}
+.intro-title{font-size:30px;font-weight:900;line-height:1.25;margin-bottom:10px}
+.intro-title span{color:#ef4444;display:block}
+.intro-desc{font-size:13px;color:#666;line-height:1.7;margin-bottom:24px}
+.intro-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+.tag{font-size:11px;padding:4px 12px;border-radius:20px;border:1px solid #333;color:#888}
+.tag.r{border-color:#ef4444;color:#ef4444}
+.follow-box{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px;text-align:left}
+.follow-box input[type=checkbox]{width:20px;height:20px;accent-color:#ef4444;flex-shrink:0}
+.follow-box label{font-size:13px;color:#888;line-height:1.5}
+.follow-box label a{color:#ef4444;text-decoration:none}
+.start-btn{background:#ef4444;color:#fff;border:none;border-radius:14px;padding:18px;font-size:16px;font-weight:900;cursor:pointer;width:100%;position:relative}
+.start-btn::after{content:'→';position:absolute;right:20px;top:50%;transform:translateY(-50%)}
+.intro-note{font-size:11px;color:#444;margin-top:12px}
+
+/* QUIZ */
+#s-quiz{background:#0f0f0f;padding:0}
+.quiz-header{padding:20px 20px 0;display:flex;align-items:center;gap:12px}
+.back-btn{background:none;border:1px solid #2a2a2a;border-radius:8px;color:#666;padding:6px 12px;font-size:13px;cursor:pointer}
+.prog-bar{flex:1;height:4px;background:#1a1a1a;border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;background:#ef4444;border-radius:2px;transition:width .3s}
+.prog-lbl{font-size:12px;color:#444;white-space:nowrap}
+.quiz-body{flex:1;padding:28px 20px 20px}
+.q-num{font-size:11px;font-weight:700;letter-spacing:1.5px;color:#ef4444;margin-bottom:8px}
+.q-title{font-size:20px;font-weight:800;line-height:1.4;margin-bottom:24px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:14px 16px;text-align:left;cursor:pointer;font-size:14px;color:#ccc;transition:.15s;width:100%;display:flex;justify-content:space-between;align-items:center}
+.opt:hover{background:#1f0808;border-color:#ef4444;color:#fff}
+.opt .oa{font-size:16px;color:#333}
+.opt:hover .oa{color:#ef4444}
+
+/* RESULT */
+#s-result{background:#0f0f0f;padding-bottom:40px}
+.r-header{padding:28px 20px 0;text-align:center}
+.r-badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1.2px;color:#ef4444;background:#1f0808;border-radius:20px;padding:4px 14px;margin-bottom:14px}
+.r-header h2{font-size:20px;font-weight:800;margin-bottom:4px}
+.r-header p{font-size:13px;color:#555}
+
+/* スクショカード */
+.share-card{margin:18px 16px 0;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:18px;padding:20px}
+.sc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.sc-top .scl{font-size:11px;color:#555}
+.sc-top .sct{font-size:11px;color:#ef4444;font-weight:700}
+.sc-hero{text-align:center;margin-bottom:16px}
+.sc-score{font-size:64px;font-weight:900;color:#ef4444;line-height:1}
+.sc-unit{font-size:13px;color:#555;margin-top:4px}
+.sc-rank{display:inline-block;font-size:13px;font-weight:800;padding:6px 18px;border-radius:20px;margin:10px auto;display:block;text-align:center;width:fit-content}
+.rank-kiken{background:#1f0808;color:#ef4444;border:1px solid #ef4444}
+.rank-chuui{background:#1f1008;color:#f97316;border:1px solid #f97316}
+.rank-yaya{background:#1a1a08;color:#eab308;border:1px solid #eab308}
+.rank-antei{background:#081a10;color:#22c55e;border:1px solid #22c55e}
+.sc-factors{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.sc-factor{background:#111;border-radius:10px;padding:10px 8px;text-align:center}
+.sc-factor .fl{font-size:10px;color:#555;margin-bottom:4px}
+.sc-factor .fn{font-size:13px;font-weight:800;color:#ef4444}
+.sc-msg{background:#111;border-radius:10px;padding:12px 14px;font-size:13px;color:#888;line-height:1.7;margin-bottom:14px}
+.sc-foot{border-top:1px solid #2a2a2a;padding-top:12px;display:flex;justify-content:space-between}
+.sc-foot .sfl{font-size:11px;color:#333}
+.sc-foot .sfr{font-size:12px;color:#ef4444;font-weight:700}
+
+/* TOP3詳細 */
+.factors-wrap{margin:12px 16px 0;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:16px}
+.factors-title{font-size:12px;color:#555;letter-spacing:.8px;margin-bottom:14px}
+.factor-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.factor-row:last-child{margin-bottom:0}
+.factor-rank{font-size:16px;width:24px;text-align:center}
+.factor-name{font-size:13px;color:#ccc;flex:1}
+.factor-bar-wrap{width:80px;height:8px;background:#111;border-radius:4px;overflow:hidden}
+.factor-bar{height:100%;border-radius:4px;background:#ef4444}
+.factor-score{font-size:12px;color:#ef4444;font-weight:700;width:20px;text-align:right}
+
+/* インサイト */
+.insight-wrap{margin:12px 16px 0;background:#1f0808;border-left:3px solid #ef4444;border-radius:0 10px 10px 0;padding:12px 14px}
+.insight-wrap p{font-size:13px;color:#ccc;line-height:1.7}
+.insight-wrap strong{color:#ef4444}
+
+/* みんなの結果 */
+.list-wrap{margin:12px 16px 0;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:16px}
+.list-title{font-size:12px;color:#555;letter-spacing:.8px;margin-bottom:12px}
+.list-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #1e1e1e;font-size:12px}
+.list-item:last-child{border-bottom:none}
+.li-score{font-size:16px;font-weight:800;color:#ef4444;width:32px;text-align:center}
+.li-rank{font-size:11px;padding:2px 8px;border-radius:10px;flex-shrink:0}
+.li-tags{color:#555;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.li-date{font-size:10px;color:#333;flex-shrink:0}
+
+.share-btns{margin:12px 16px 0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.share-btn{padding:13px;border-radius:12px;font-size:13px;font-weight:800;text-align:center;cursor:pointer;border:none;text-decoration:none;display:block}
+.bx{background:#000;color:#fff;border:1px solid #333}
+.bss{background:#1a1a1a;color:#ef4444;border:1px solid #ef4444}
+.ss-hint{text-align:center;font-size:12px;color:#555;margin:8px 16px 0;display:none;line-height:1.6}
+.cta-wrap{margin:12px 16px 0;display:flex;flex-direction:column;gap:8px}
+.cta-btn{display:block;text-align:center;border-radius:12px;padding:14px;font-size:14px;font-weight:800;text-decoration:none}
+.ct{background:#ef4444;color:#fff}
+.cl{background:#06c755;color:#fff}
+.cn{background:#1a1a1a;color:#41c9b4;border:1px solid #41c9b4}
+.retry-btn{background:none;border:1px solid #2a2a2a;color:#555;font-size:13px;border-radius:10px;padding:12px;width:100%;cursor:pointer;margin-top:4px}
 </style>
 </head>
-
 <body>
 
-<div class="wrap">
-
-<section class="card" id="top">
-  <span class="badge">介護士向け・無料診断</span>
-  <h1>介護士ストレス偏差値診断<br>今の職場、危険ライン？</h1>
-  <p class="lead">
-    人手不足・夜勤・人間関係・給料不満などから、あなたの職場ストレスを偏差値風に診断します。
-  </p>
-
-  <a class="btn tiktok" href="https://www.tiktok.com/@kaigo_kasai_edogawaku" target="_blank">
-    ① TikTokをフォローする
-  </a>
-
-  <label class="checkBox">
-    <input type="checkbox" id="followCheck">
-    TikTokをフォローしました
-  </label>
-
-  <button class="btn" onclick="startQuiz()">② 診断をはじめる</button>
-
-  <p class="small">※フォロー後にチェックして診断へ進んでください。</p>
-</section>
-
-<section class="card hidden" id="quizCard">
-  <div class="progressText" id="progressText">質問 1 / 12</div>
-  <div class="progressWrap">
-    <div class="progressBar" id="progressBar"></div>
+<!-- INTRO -->
+<div class="screen active" id="s-intro">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="intro-inner">
+    <div class="eyebrow">ストレス偏差値診断</div>
+    <h1 class="intro-title">今の職場、<span>危険ライン？</span></h1>
+    <p class="intro-desc">人手不足・夜勤・人間関係・給料不満から<br>あなたの職場ストレスを偏差値で診断します</p>
+    <div class="intro-tags">
+      <span class="tag r">無料診断</span>
+      <span class="tag r">全12問</span>
+      <span class="tag">偏差値つき</span>
+      <span class="tag">TOP3分析</span>
+    </div>
+    <div class="follow-box">
+      <input type="checkbox" id="followCheck">
+      <label for="followCheck"><a href="https://www.tiktok.com/@kaigo_kasai_edogawaku" target="_blank">TikTok @介護の裏側</a> をフォローしてから診断スタート</label>
+    </div>
+    <button class="start-btn" onclick="startQuiz()">診断スタート</button>
+    <p class="intro-note">介護の裏側 @kaigo_kasai_edogawaku</p>
   </div>
-  <div class="qTitle" id="questionTitle"></div>
-  <div id="options"></div>
-</section>
+</div>
 
-<section id="resultBox" class="card result"></section>
+<!-- QUIZ -->
+<div class="screen" id="s-quiz">
+  <div class="quiz-header">
+    <button class="back-btn" onclick="goBack()">← 戻る</button>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+    <div class="prog-lbl" id="prog-lbl">1 / 12</div>
+  </div>
+  <div class="quiz-body">
+    <div class="q-num" id="q-num">QUESTION 1</div>
+    <div class="q-title" id="q-title"></div>
+    <div class="opts" id="opts"></div>
+  </div>
+</div>
 
-<section class="card">
-  <h2>みんなの診断結果</h2>
-  <p class="small">最新50件を自動表示します。</p>
-  <div id="resultList">読み込み中...</div>
-</section>
+<!-- RESULT -->
+<div class="screen" id="s-result">
+  <div class="r-header">
+    <div class="r-badge">診断結果</div>
+    <h2 id="r-headline">あなたの職場ストレス</h2>
+    <p>スクショしてTikTokでシェアしよう</p>
+  </div>
 
-<div class="footer">介護士ストレス偏差値診断</div>
+  <div class="share-card" id="shareCard">
+    <div class="sc-top"><div class="scl">介護士ストレス偏差値診断</div><div class="sct">#介護の裏側</div></div>
+    <div class="sc-hero">
+      <div class="sc-score" id="sc-score">-</div>
+      <div class="sc-unit">ストレス偏差値</div>
+    </div>
+    <div style="text-align:center;margin-bottom:14px">
+      <span class="sc-rank" id="sc-rank">-</span>
+    </div>
+    <div class="sc-factors">
+      <div class="sc-factor"><div class="fl">🥇 1位</div><div class="fn" id="sf1">-</div></div>
+      <div class="sc-factor"><div class="fl">🥈 2位</div><div class="fn" id="sf2">-</div></div>
+      <div class="sc-factor"><div class="fl">🥉 3位</div><div class="fn" id="sf3">-</div></div>
+    </div>
+    <div class="sc-msg" id="sc-msg"></div>
+    <div class="sc-foot"><div class="sfl">@kaigo_kasai_edogawaku</div><div class="sfr">TikTok ▶</div></div>
+  </div>
 
+  <div class="factors-wrap">
+    <div class="factors-title">ストレス要因TOP3詳細</div>
+    <div id="factor-detail"></div>
+  </div>
+
+  <div class="insight-wrap"><p id="insight"></p></div>
+
+
+
+  <div class="share-btns">
+    <a class="share-btn bx" id="x-btn" href="#" target="_blank">𝕏 でシェア</a>
+    <button class="share-btn bss" onclick="toggleSS()">📸 スクショ用</button>
+  </div>
+  <div class="ss-hint" id="ss-hint">↑ 上のカードをスクショして<br>TikTokのコメント欄に貼ってね！</div>
+
+  <div class="cta-wrap">
+    <a href="https://www.tiktok.com/@kaigo_kasai_edogawaku" class="cta-btn ct" target="_blank">▶ TikTokで介護の裏側を見る</a>
+    <a href="https://lin.ee/8HmXwzg" class="cta-btn cl" target="_blank">LINE で詳しく相談する（無料）</a>
+    <a href="https://note.com/kaigo_tenshoku" class="cta-btn cn" target="_blank">📓 介護士の現場ノートを読む</a>
+    <button class="retry-btn" onclick="restart()">もう一度診断する</button>
+  </div>
 </div>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbxw6agki5LqLpldEBuPaC0j0gxXerex75Q1tGZpRblPrgCdX7304R8x-B8votMaEEOmUw/exec";
+const API_URL='https://script.google.com/macros/s/AKfycbziZYCESWLpnlyzjMuX8U8wY212DcA9WWW6sWdKCd8lgLDa5oGoKC3Udbxwordl3TxdLQ/exec';
 
-const questions = [
-  ["人手不足を感じる", [["まったく感じない",1],["少し感じる",2],["普通に感じる",3],["かなり感じる",4],["限界レベル",5]]],
-  ["夜勤の負担が重い", [["問題ない",1],["少しきつい",2],["普通にきつい",3],["かなりきつい",4],["もう限界",5]]],
-  ["人間関係で消耗している", [["ほぼない",1],["少しある",2],["普通にある",3],["かなりある",4],["毎日つらい",5]]],
-  ["サービス残業がある", [["ない",1],["たまにある",2],["月数回ある",3],["よくある",4],["当たり前になっている",5]]],
-  ["休憩が取れない", [["取れている",1],["少し削られる",2],["日による",3],["ほぼ取れない",4],["休憩という概念がない",5]]],
-  ["入浴介助がきつい", [["問題ない",1],["少しきつい",2],["普通にきつい",3],["かなりきつい",4],["身体が限界",5]]],
-  ["給料に納得していない", [["納得している",1],["少し不満",2],["普通に不満",3],["かなり不満",4],["割に合わなすぎる",5]]],
-  ["シフトの融通が利かない", [["問題ない",1],["少し不満",2],["普通に不満",3],["かなり不満",4],["生活に支障がある",5]]],
-  ["上司・管理者に不信感がある", [["ない",1],["少しある",2],["普通にある",3],["かなりある",4],["信用できない",5]]],
-  ["職場の雰囲気が悪い", [["まったく悪くない",1],["少し気になる",2],["普通に悪い",3],["かなり悪い",4],["毎日しんどい",5]]],
-  ["腰痛・身体的疲労がある", [["ほぼない",1],["少しある",2],["普通にある",3],["かなりある",4],["限界に近い",5]]],
-  ["辞めたいと思う頻度", [["ほぼない",1],["たまにある",2],["月に何度かある",3],["週に何度もある",4],["毎日のように思う",5]]]
+const questions=[
+  ['人手不足を感じる',[['まったく感じない',1],['少し感じる',2],['普通に感じる',3],['かなり感じる',4],['限界レベル',5]]],
+  ['夜勤の負担が重い',[['問題ない',1],['少しきつい',2],['普通にきつい',3],['かなりきつい',4],['もう限界',5]]],
+  ['人間関係で消耗している',[['ほぼない',1],['少しある',2],['普通にある',3],['かなりある',4],['毎日つらい',5]]],
+  ['サービス残業がある',[['ない',1],['たまにある',2],['月数回ある',3],['よくある',4],['当たり前になっている',5]]],
+  ['休憩が取れない',[['取れている',1],['少し削られる',2],['日による',3],['ほぼ取れない',4],['休憩という概念がない',5]]],
+  ['入浴介助がきつい',[['問題ない',1],['少しきつい',2],['普通にきつい',3],['かなりきつい',4],['身体が限界',5]]],
+  ['給料に納得していない',[['納得している',1],['少し不満',2],['普通に不満',3],['かなり不満',4],['割に合わなすぎる',5]]],
+  ['シフトの融通が利かない',[['問題ない',1],['少し不満',2],['普通に不満',3],['かなり不満',4],['生活に支障がある',5]]],
+  ['上司・管理者に不信感がある',[['ない',1],['少しある',2],['普通にある',3],['かなりある',4],['信用できない',5]]],
+  ['職場の雰囲気が悪い',[['まったく悪くない',1],['少し気になる',2],['普通に悪い',3],['かなり悪い',4],['毎日しんどい',5]]],
+  ['腰痛・身体的疲労がある',[['ほぼない',1],['少しある',2],['普通にある',3],['かなりある',4],['限界に近い',5]]],
+  ['辞めたいと思う頻度',[['ほぼない',1],['たまにある',2],['月に何度かある',3],['週に何度もある',4],['毎日のように思う',5]]],
 ];
+const labels=['人手不足','夜勤負担','人間関係','サービス残業','休憩不足','入浴介助','給料不満','シフト不満','上司不信','職場雰囲気','身体疲労','退職意向'];
 
-const labels = ["人手不足","夜勤負担","人間関係","サービス残業","休憩不足","入浴介助","給料不満","シフト不満","上司不信","職場雰囲気","身体疲労","退職意向"];
-
-let current = 0;
-let answers = Array(questions.length).fill(null);
+let cur=0,answers=Array(questions.length).fill(null);
+const $=id=>document.getElementById(id);
 
 function startQuiz(){
-  if(!document.getElementById("followCheck").checked){
-    alert("TikTokフォロー後にチェックを入れてください。");
-    return;
-  }
-  document.getElementById("top").classList.add("hidden");
-  document.getElementById("quizCard").classList.remove("hidden");
-  document.getElementById("resultBox").style.display = "none";
-  renderQuestion();
-  document.getElementById("quizCard").scrollIntoView({behavior:"smooth"});
+  if(!$('followCheck').checked){alert('TikTokフォロー後にチェックを入れてください。');return;}
+  cur=0;answers=Array(questions.length).fill(null);
+  switchScreen('s-quiz');renderQ();
 }
 
-function renderQuestion(){
-  const q = questions[current];
-  document.getElementById("progressText").textContent = `質問 ${current + 1} / ${questions.length}`;
-  document.getElementById("progressBar").style.width = `${((current + 1) / questions.length) * 100}%`;
-  document.getElementById("questionTitle").textContent = `${current + 1}. ${q[0]}`;
-
-  let html = "";
-  q[1].forEach((opt,idx)=>{
-    html += `<div class="option" onclick="selectAnswer(${idx})">${opt[0]}</div>`;
+function renderQ(){
+  const q=questions[cur];
+  $('prog').style.width=((cur/questions.length)*100)+'%';
+  $('prog-lbl').textContent=(cur+1)+' / '+questions.length;
+  $('q-num').textContent='QUESTION '+(cur+1);
+  $('q-title').textContent=q[0];
+  const opts=$('opts');
+  opts.innerHTML='';
+  q[1].forEach((opt,i)=>{
+    const btn=document.createElement('button');
+    btn.className='opt';
+    btn.innerHTML=`<span>${opt[0]}</span><span class="oa">›</span>`;
+    btn.onclick=()=>pick(i);
+    opts.appendChild(btn);
   });
-  document.getElementById("options").innerHTML = html;
 }
 
-function selectAnswer(idx){
-  const opt = questions[current][1][idx];
-  answers[current] = { text: opt[0], value: opt[1] };
-
-  if(current < questions.length - 1){
-    current++;
-    renderQuestion();
-    document.getElementById("quizCard").scrollIntoView({behavior:"smooth"});
-  }else{
-    diagnose();
-  }
+function pick(i){
+  const opt=questions[cur][1][i];
+  answers[cur]={text:opt[0],value:opt[1]};
+  if(cur<questions.length-1){cur++;renderQ();}
+  else showResult();
 }
 
-function diagnose(){
-  document.getElementById("quizCard").classList.add("hidden");
-
-  const total = answers.reduce((sum,a)=>sum + a.value,0);
-  const deviation = Math.round(35 + ((total - 12) / 48) * 45);
-
-  let rank = "";
-  let comment = "";
-
-  if(deviation >= 72){
-    rank = "危険ライン";
-    comment = "かなり危険です。あなたの我慢不足ではなく、職場環境そのものに問題がある可能性が高いです。";
-  }else if(deviation >= 62){
-    rank = "要注意";
-    comment = "かなり消耗しています。今の職場が普通なのか、他の条件と比較した方がいい状態です。";
-  }else if(deviation >= 52){
-    rank = "ややストレス高め";
-    comment = "今すぐ危険とは言い切れませんが、不満が積み上がりやすい状態です。";
-  }else{
-    rank = "比較的安定";
-    comment = "現時点では大きな危険ラインではありません。ただし定期的な見直しは必要です。";
-  }
-
-  const tags = {};
-  answers.forEach((a,i)=>tags[labels[i]] = a.value);
-
-  const topFactors = Object.entries(tags)
-    .sort((a,b)=>b[1]-a[1])
-    .slice(0,3)
-    .map(x=>x[0]);
-
-  document.getElementById("resultBox").style.display = "block";
-  document.getElementById("resultBox").innerHTML = `
-    <h2>診断結果</h2>
-    <div class="score">${deviation}</div>
-    <span class="rank">${rank}</span>
-
-    <div class="comment">
-      <p><strong>主なストレス要因TOP3</strong></p>
-      <p>🥇 ${topFactors[0]}</p>
-      <p>🥈 ${topFactors[1]}</p>
-      <p>🥉 ${topFactors[2]}</p>
-      <p>${comment}</p>
-    </div>
-
-    <h2>次にやること</h2>
-    <p class="lead">今の職場が本当に普通なのか、他の介護職場と比較してみてください。</p>
-
-    <a class="btn note" href="https://note.com/kaigo_tenshoku" target="_blank">noteで詳しく読む</a>
-    <a class="btn line" href="https://lin.ee/Rxbphei" target="_blank">LINEで相談する</a>
-    <button class="btn secondary" onclick="restartQuiz()">もう一度診断する</button>
-  `;
-
-  saveResult(total, deviation, tags);
-
-  setTimeout(loadResults,1500);
-  document.getElementById("resultBox").scrollIntoView({behavior:"smooth"});
+function goBack(){
+  if(cur>0){cur--;renderQ();}
+  else switchScreen('s-intro');
 }
 
-function saveResult(total, deviation, tags){
-  const img = new Image();
-  img.src =
-    API_URL
-    + "?totalScore=" + encodeURIComponent(total)
-    + "&deviation=" + encodeURIComponent(deviation)
-    + "&selectedTags=" + encodeURIComponent(JSON.stringify(tags))
-    + "&t=" + Date.now();
+function switchScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  $(id).classList.add('active');
 }
 
-function restartQuiz(){
-  current = 0;
-  answers = Array(questions.length).fill(null);
-  document.getElementById("resultBox").style.display = "none";
-  document.getElementById("top").classList.remove("hidden");
-  document.getElementById("top").scrollIntoView({behavior:"smooth"});
+function restart(){
+  cur=0;answers=Array(questions.length).fill(null);
+  switchScreen('s-intro');
 }
 
-function loadResults(){
-  const old = document.getElementById("jsonpScript");
-  if(old) old.remove();
+function showResult(){
+  switchScreen('s-result');
+  const total=answers.reduce((s,a)=>s+a.value,0);
+  const deviation=Math.round(35+((total-12)/48)*45);
 
-  const script = document.createElement("script");
-  script.id = "jsonpScript";
-  script.src = API_URL + "?mode=list&callback=renderResults&t=" + Date.now();
-  document.body.appendChild(script);
-}
-
-function renderResults(data){
-  if(!data || data.length === 0){
-    document.getElementById("resultList").innerHTML = "まだ診断結果がありません。";
-    return;
+  let rankText,rankClass,comment,insight;
+  if(deviation>=72){
+    rankText='危険ライン';rankClass='rank-kiken';
+    comment='かなり危険な状態です。我慢不足ではなく、職場環境そのものに問題がある可能性が高いです。';
+    insight='<strong>今すぐ行動が必要です。</strong>偏差値72以上は職場環境が深刻なレベル。同じ介護士でも職場によって天と地ほど差があります。まずは比較することから始めてください。';
+  } else if(deviation>=62){
+    rankText='要注意';rankClass='rank-chuui';
+    comment='かなり消耗しています。今の職場が普通なのか、他の条件と比較した方がいい状態です。';
+    insight='<strong>消耗が積み重なっています。</strong>偏差値62以上は転職を検討すべきライン。今の環境が「普通」だと思い込んでいませんか？';
+  } else if(deviation>=52){
+    rankText='ややストレス高め';rankClass='rank-yaya';
+    comment='今すぐ危険とは言い切れませんが、不満が積み上がりやすい状態です。';
+    insight='<strong>じわじわと消耗しています。</strong>小さな不満が積み重なって突然限界を迎えるパターンに注意。定期的に職場環境を見直す習慣をつけましょう。';
+  } else {
+    rankText='比較的安定';rankClass='rank-antei';
+    comment='現時点では大きな危険ラインではありません。ただし定期的な見直しは必要です。';
+    insight='<strong>比較的良い環境にいます。</strong>ただし介護業界全体では珍しい状態。今の職場の良さを改めて確認しておきましょう。';
   }
 
-  let html = `
-    <table>
-      <tr>
-        <th>日時</th>
-        <th>点数</th>
-        <th>偏差値</th>
-        <th>TOP3</th>
-      </tr>
-  `;
+  const tags={};
+  answers.forEach((a,i)=>tags[labels[i]]=a.value);
+  const top3=Object.entries(tags).sort((a,b)=>b[1]-a[1]).slice(0,3);
 
-  data.forEach(item=>{
-    html += `
-      <tr>
-        <td>${formatDate(item.date)}</td>
-        <td>${item.score}</td>
-        <td>${item.deviation}</td>
-        <td>${formatTags(item.tags)}</td>
-      </tr>
-    `;
-  });
+  $('sc-score').textContent=deviation;
+  const rankEl=$('sc-rank');
+  rankEl.textContent=rankText;
+  rankEl.className='sc-rank '+rankClass;
+  $('sf1').textContent=top3[0][0];
+  $('sf2').textContent=top3[1][0];
+  $('sf3').textContent=top3[2][0];
+  $('sc-msg').textContent=comment;
+  $('r-headline').textContent=rankText+'：偏差値'+deviation;
+  $('insight').innerHTML=insight;
 
-  html += `</table>`;
-  document.getElementById("resultList").innerHTML = html;
+  const medals=['🥇','🥈','🥉'];
+  $('factor-detail').innerHTML=top3.map((f,i)=>`
+    <div class="factor-row">
+      <div class="factor-rank">${medals[i]}</div>
+      <div class="factor-name">${f[0]}</div>
+      <div class="factor-bar-wrap"><div class="factor-bar" style="width:${f[1]/5*100}%"></div></div>
+      <div class="factor-score">${f[1]}/5</div>
+    </div>`).join('');
+
+  const txt=`介護士ストレス診断：偏差値${deviation}「${rankText}」\n主因：${top3[0][0]}・${top3[1][0]}・${top3[2][0]}\n #介護の裏側 #介護士\nhttps://kaigo-lab.github.io/kaigo-black-check/`;
+  $('x-btn').href='https://twitter.com/intent/tweet?text='+encodeURIComponent(txt);
+
+  saveResult(total,deviation,tags);
 }
 
-function formatDate(date){
-  if(!date) return "";
-  return String(date).replace("T"," ").slice(0,16);
+function saveResult(total,deviation,tags){
+  const img=new Image();
+  img.src=API_URL+'?totalScore='+encodeURIComponent(total)+'&deviation='+encodeURIComponent(deviation)+'&selectedTags='+encodeURIComponent(JSON.stringify(tags))+'&t='+Date.now();
 }
 
-function formatTags(tags){
-  if(!tags) return "";
-  try{
-    const obj = typeof tags === "string" ? JSON.parse(tags) : tags;
-    return Object.entries(obj)
-      .sort((a,b)=>b[1]-a[1])
-      .slice(0,3)
-      .map(x=>x[0])
-      .join("・");
-  }catch(e){
-    return String(tags);
-  }
+
+
+function toggleSS(){
+  const h=$('ss-hint');
+  h.style.display=h.style.display==='none'?'block':'none';
 }
 
-loadResults();
+
 </script>
-
 </body>
 </html>
